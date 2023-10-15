@@ -1,3 +1,5 @@
+import "./maincontent.css"
+
 const MainContent = ({pageName}) => {
   return (
     <div>

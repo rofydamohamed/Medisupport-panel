@@ -1,11 +1,12 @@
 import Header from "../comp/header";
 import Footer from "../comp/footer";
+import MainContent from "../comp/maincontent";
 
 const Css = () => {
   return (
     <>
       <Header />
-      <main>Css pages</main>
+      <MainContent pageName="Css"/>
       <Footer />
     </>
   );

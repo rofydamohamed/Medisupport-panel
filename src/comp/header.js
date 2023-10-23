@@ -77,7 +77,7 @@ const Header = () => {
               HTML <i className="fas fa-plus" />
             </label>
             <input id="html" type="checkbox" />
-            <ul className="sub-div">
+            {/* <ul className="sub-div">
               <li>
                 <a href="">Full Course</a>
               </li>
@@ -87,14 +87,14 @@ const Header = () => {
               <li>
                 <a href="">learn in 1h</a>
               </li>
-            </ul>
+            </ul> */}
           </div>
           <div className="main-div">
             <label htmlFor="css">
               CSS <i className="fas fa-plus" />
             </label>
             <input id="css" type="checkbox" />
-            <ul className="sub-div">
+          {/*   <ul className="sub-div">
               <li>
                 <a href="">Full Course</a>
               </li>
@@ -118,7 +118,7 @@ const Header = () => {
                   </li>
                 </ul>
               </li>
-            </ul>
+            </ul> */}
           </div>
           <div className="main-div">
             <label htmlFor="js">
@@ -127,7 +127,7 @@ const Header = () => {
             <input id="js" type="checkbox" />
             <ul className="sub-div">
               <li>
-                <a href="">coming soon🔥</a>
+                <NavLink href="">coming soon🔥</NavLink>
               </li>
             </ul>
           </div>

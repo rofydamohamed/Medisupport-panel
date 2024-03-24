@@ -1,6 +1,6 @@
-import Header from "../comp/header";
-import Footer from "../comp/footer";
-import MainContent from "../comp/maincontent";
+import Header from "../components/header";
+import Footer from "../components/footer";
+import MainContent from "../components/maincontent";
 
 const Css = () => {
   return (

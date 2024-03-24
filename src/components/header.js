@@ -6,12 +6,12 @@ const Header = () => {
     <>
       <header className="hide-when-mobile">
         <h1>
-          <Link to="/">Course 4 Arab</Link>
+          <Link to="/">Mine</Link>
         </h1>
         <ul className="flex">
           <li className="main-list">
             <NavLink className="main-link" to="/html">
-              HTML
+              profile
             </NavLink>
             {/* <ul className="sub-ul">
               <li>
@@ -27,7 +27,7 @@ const Header = () => {
           </li>
           <li className="main-list">
             <NavLink className="main-link" to="/css">
-              CSS
+              about
             </NavLink>
           {/*   <ul className="sub-ul">
               <li>
@@ -54,7 +54,7 @@ const Header = () => {
           </li>
           <li className="main-list">
             <NavLink className="main-link" to="/javascript">
-              JavaScript
+              services
             </NavLink>
             {/* <ul className="sub-ul sub-of-js">
               <li>

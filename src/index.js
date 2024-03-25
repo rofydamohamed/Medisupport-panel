@@ -1,6 +1,6 @@
 import React from "react";
 import { AuthProvider } from "./components/AuthContext";
-import ProtectedRoute from './components/ProtectedRoute';
+//import ProtectedRoute from './components/ProtectedRoute';
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { HelmetProvider } from "react-helmet-async";

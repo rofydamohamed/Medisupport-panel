@@ -10,7 +10,7 @@ const Login = () => {
         <meta name="description" content="" />
       </Helmet>
       <div>
-        vvvvvvvvvvvvvvvvvvvvvvv
+        
       </div>
     </Layout>
   );

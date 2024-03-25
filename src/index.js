@@ -5,8 +5,8 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { HelmetProvider } from "react-helmet-async";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Dashboard from "./components/Dashboard";
 import Login from "./pages/Login";
+import Dashboard from "./components/Dashboard";
 import Loginasadmin from "./pages/Login_as_admin";
 import Loginasdoctor from "./pages/Login_as_doctor";
 import Contactus from "./pages/Contact_us";
@@ -17,13 +17,13 @@ import RegisterNewDoctor from "./pages/Register_New_Doctor";
 
 const router = createBrowserRouter([
   {
-    path: "",
-    element: <Dashboard />,
+    path: "/",
+    element: <Login />,
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
-    path: "/",
-    element:<Login />,
+    path: "",
+    element: <Dashboard />,
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {

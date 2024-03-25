@@ -17,12 +17,12 @@ import RegisterNewDoctor from "./pages/Register_New_Doctor";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "",
     element: <Dashboard />,
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
-    path: "",
+    path: "/",
     element: (
       <>
         <Login />

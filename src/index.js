@@ -81,9 +81,9 @@ const router = createBrowserRouter([
   {
     path: "",
     element: (
-      <ProtectedRoute>
+      <>
         <RegisterNewDoctor />
-      </ProtectedRoute>
+      </>
     ),
     errorElement: <h1>Sorry, No page to display....</h1>,
   },

@@ -1,7 +1,3 @@
-/* ==============================
-    Animation for bigger screen
-=============================== */
-
 @keyframes down {
   0% {
     transform: translateY(-100px);
@@ -12,29 +8,23 @@
   }
 }
 
-
 header {
   animation: down 1s 1;
 }
 
 h1 {
   animation: ltr 2s 1;
-
 }
-
-
 
 @keyframes ltr {
   0% {
     transform: translateX(-100px);
-    color: cyan;
+    color: var(--Red);
   }
 
   50% {
     transform: translateX(150px);
   }
-
-
 
   70% {
     transform: translateX(-150px);
@@ -45,16 +35,12 @@ h1 {
   }
 }
 
-
-
 .sub-ul,
 .sub-sub-ul {
   animation: hoverrr 1s 1;
 }
 
 @keyframes hoverrr {
-
-
   0% {
     opacity: 0;
   }
@@ -62,17 +48,13 @@ h1 {
   100% {
     opacity: 1;
   }
-
-
 }
-
 
 span {
   animation: heart 2s infinite linear;
 }
 
 @keyframes heart {
-
   0%,
   100% {
     opacity: 0;
@@ -82,12 +64,7 @@ span {
     opacity: 1;
   }
 }
-
-
-/* ==============================
-  Animation for mobile
-=============================== */
-
+/* mob */
 
 .show-on-click,
 .sub-div,

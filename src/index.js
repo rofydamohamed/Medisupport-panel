@@ -23,11 +23,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: (
-      <>
-        <Login />
-      </>
-    ),
+    element:<Login />,
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {

@@ -5,7 +5,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { HelmetProvider } from "react-helmet-async";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./components/Dashboard";
 import Login from "./pages/Login";
 import Loginasadmin from "./pages/Login_as_admin";
 import Loginasdoctor from "./pages/Login_as_doctor";

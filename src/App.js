@@ -8,12 +8,11 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
-    <AuthProvider> {/* إضافة AuthProvider هنا */}
+    <AuthProvider>
       <Router>
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} /> 
+          <Route path="/" element={<Login />} />
+          
         </Routes>
       </Router>
     </AuthProvider>

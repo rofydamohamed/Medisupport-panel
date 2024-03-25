@@ -17,12 +17,12 @@ import RegisterNewDoctor from "./pages/Register_New_Doctor";
 
 const router = createBrowserRouter([
   {
-    path: "/Dashboard",
+    path: "/",
     element: <Dashboard />,
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
-    path: "/Login",
+    path: "/",
     element: (
       <>
         <Login />
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
-    path: "/Login_as_admin",
+    path: "/",
     element: (
       <>
         <Loginasadmin />
@@ -40,22 +40,22 @@ const router = createBrowserRouter([
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
-    path: "/Login_as_doctor",
+    path: "/",
     element: <Loginasdoctor />,
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
-    path: "/Contact_us",
+    path: "/",
     element: <Contactus/>,
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
-    path: "/Users",
+    path: "/",
     element: <Users />,
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
-    path: "/Articles",
+    path: "/",
     element: (
       <>
         <Articles />
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
-    path: "/Doctors",
+    path: "/",
     element: (
       <>
         <Doctors />
@@ -73,11 +73,11 @@ const router = createBrowserRouter([
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
-    path: "/Register_New_Doctor",
+    path: "/",
     element: (
-      <ProtectedRoute>
+      <>
         <RegisterNewDoctor />
-      </ProtectedRoute>
+      </>
     ),
     errorElement: <h1>Sorry, No page to display....</h1>,
   },

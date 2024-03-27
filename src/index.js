@@ -37,7 +37,7 @@ const router = createBrowserRouter([
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
-    path: "",
+    path: "/logadmin",
     element: (
       <>
         <Loginasadmin />
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
-    path: "",
+    path: "logdoc",
     element: <Loginasdoctor />,
     errorElement: <h1>Sorry, No page to display....</h1>,
   },

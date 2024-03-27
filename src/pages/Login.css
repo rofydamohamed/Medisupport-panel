@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.logIn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100vh;
+}
+
+.text {
+    display: flex;
+    padding: 10% 5% 5% 5%;
+    flex-direction: column;
+    gap: 5rem;
+    width: 100%;
+}
+
+.photo1 {
+    object-fit: contain;
+    width: 100%;
+    min-width: 20rem;
+    max-width: 45rem;
+}
+
+img {
+  width: 100%;
+}
+
+.logo{
+  align-self: center;
+  color: #BE0202;
+font-family: Arizonia;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.logo h3{
+    font-family: 'Arizonia','sans-serif';
+    font-size: 3rem;
+    font-weight: 400;
+    cursor: pointer;
+  }
+
+
+
+.btn {
+  display: inline-block;
+  background-color: var(--Red);
+  color: var(--whiteColor);
+  text-align: center;
+  padding: 0.3em;
+  border-radius: 0.4em;
+  border: 2px solid var(--Red);
+  font-family: "Roboto", sans-serif;
+  font-size: 1.7em;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  width: 100%;
+  margin: 1rem 0rem;
+}
+
+@media screen and (max-width: 1090px) {
+  .logIn {
+    flex-direction: column;
+  }
+  .logIn .text,.text{
+    width: 100%;
+  }
+  .logIn .photo1 {
+    order: -1;
+  }
+  .logIn .text {
+    padding-top: 0;
+  }
+}

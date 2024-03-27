@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import "./Login_as_admin.css";
 import React, { useState } from "react";
 import log from "../Images/logIn.jpg";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../components/AuthContext";
 

@@ -1,14 +1,14 @@
 import React from "react";
 import { AuthProvider } from "./components/AuthContext";
 //import ProtectedRoute from './components/ProtectedRoute';
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import "./index.css";
 import { HelmetProvider } from "react-helmet-async";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./pages/Login";
+import Loginasadmin from "./pages/Login_as_admin";
 import Dashboard from "./pages/Dashboard";
 import Sidebar from "./components/Sidebar";
-import Loginasadmin from "./pages/Login_as_admin";
 import Loginasdoctor from "./pages/Login_as_doctor";
 import Contactus from "./pages/Contact_us";
 import Users from "./pages/Users";
@@ -23,6 +23,15 @@ const router = createBrowserRouter([
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
+    path: "/src/pages/Login_as_admin.js",
+    element: (
+      <>
+        <Loginasadmin />
+      </>
+    ),
+    errorElement: <h1>Sorry, No page to display....</h1>,
+  },
+  {
     path: "",
     element: (
       <>
@@ -34,15 +43,6 @@ const router = createBrowserRouter([
   {
     path: "",
     element: <Dashboard />,
-    errorElement: <h1>Sorry, No page to display....</h1>,
-  },
-  {
-    path: "",
-    element: (
-      <>
-        <Loginasadmin />
-      </>
-    ),
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {

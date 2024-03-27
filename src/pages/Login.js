@@ -3,8 +3,23 @@ import { Helmet } from "react-helmet-async";
 import Layout from "../components/Layout";
 import "./Login.css";
 import logIn_img from "../Images/picture.jpg";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../components/AuthContext";
+import "./Login_as_admin.js"
 
 const Login = () => {
+
+  let navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    navigate("./Login_as_admin.js");
+    const isSuccess = true;
+    if (isSuccess) {
+      login();
+    }
+  };
+  const { login } = useAuth();
+
   return (
     <Layout>
       <Helmet>
@@ -36,8 +51,8 @@ const Login = () => {
               </h3>
             </div>
             <div className="buttons">
-              <button className="btn">Log in as admin</button>
-              <button className="btn">Log in as doctor</button>
+              <button onClick={handleLoginClick} className="btn">Log in as admin</button>
+              <button onClick={handleLoginClick} className="btn">Log in as doctor</button>
             </div>
           </div>
           <div className="photo1">

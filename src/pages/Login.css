@@ -42,7 +42,8 @@ img {
 }
 
 .btn {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
   background-color: var(--Red);
   color: var(--whiteColor);
   text-align: center;
@@ -69,7 +70,7 @@ img {
   .text {
     width: 100%;
   }
-  .logIn .photo1 {
+  .logIn .logIn_img {
     order: -1;
   }
   .logIn .text {

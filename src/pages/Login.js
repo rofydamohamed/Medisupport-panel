@@ -43,7 +43,7 @@ const Login = () => {
             </div>
           </div>
           <div className="logIn_img">
-            <img src={logIn_img} alt="" srcset="" />
+            <img src={logIn_img} alt="" srcset=""/>
           </div>
         </div>
       </div>

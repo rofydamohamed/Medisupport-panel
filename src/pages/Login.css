@@ -12,39 +12,39 @@
 }
 
 .text {
-    display: flex;
-    padding: 10% 5% 5% 5%;
-    flex-direction: column;
-    gap: 5rem;
-    width: 100%;
+  display: flex;
+  padding: 10% 5% 5% 5%;
+  flex-direction: column;
+  gap: 5rem;
+  width: 100%;
 }
 
 .photo1 {
-    object-fit: contain;
-    width: 100%;
-    min-width: 20rem;
-    max-width: 45rem;
+  object-fit: contain;
+  width: 100%;
+  min-width: 20rem;
+  max-width: 45rem;
 }
 
 img {
   width: 100%;
 }
 
-.logo{
+.logo {
   align-self: center;
   color: #BE0202;
-font-family: Arizonia;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  font-family: Arizonia;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
-.logo h3{
-    font-family: 'Arizonia','sans-serif';
-    font-size: 3rem;
-    font-weight: 400;
-    cursor: pointer;
-  }
+.logo h3 {
+  font-family: 'Arizonia', 'sans-serif';
+  font-size: 3rem;
+  font-weight: 400;
+  cursor: pointer;
+}
 
 
 
@@ -70,12 +70,16 @@ line-height: normal;
   .logIn {
     flex-direction: column;
   }
-  .logIn .text,.text{
+
+  .logIn .text,
+  .text {
     width: 100%;
   }
+
   .logIn .photo1 {
     order: -1;
   }
+
   .logIn .text {
     padding-top: 0;
   }

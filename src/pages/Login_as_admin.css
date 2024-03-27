@@ -2,61 +2,71 @@
     display: flex;
     /*flex-direction: row;*/
     gap: 1em;
-  }
-  .log .flex2 {
+}
+
+.log .flex2 {
     width: 100%;
-  }
-  .log .flex2 img {
+}
+
+.log .flex2 img {
     width: 100%;
-  }
-  .log .forml {
+}
+
+.log .forml {
     display: flex;
     flex-direction: column;
     gap: 1em;
-  }
-  .log .flex1 {
+}
+
+.log .flex1 {
     display: flex;
     padding: 10% 5% 5% 5%;
     flex-direction: column;
     gap: 3em;
     width: 100%;
-  }
-  .log h2 {
+}
+
+.log h2 {
     color: var(--Red);
     font-family: "Roboto", sans-serif;
     font-size: 2.625rem;
     font-style: normal;
     font-weight: 700;
     line-height: 110%;
-  }
-  .log .lbl,
-  .lbl1,
-  .lbl2 {
+}
+
+.log .lbl,
+.lbl1,
+.lbl2 {
     width: 100%;
-  }
-  .log .lbl {
+}
+
+.log .lbl {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     align-self: stretch;
     gap: 1em;
-  }
-  .log .lbl1 {
+}
+
+.log .lbl1 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 0.75em;
     align-self: stretch;
-  }
-  .log .lbl2 {
+}
+
+.log .lbl2 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 0.75em;
     align-self: stretch;
     width: 100%;
-  }
-  .log label {
+}
+
+.log label {
     color: var(--graycolor);
     font-family: "Roboto", sans-serif;
     font-size: 1em;
@@ -65,8 +75,9 @@
     line-height: 140%;
     max-width: 100%;
     height: auto;
-  }
-  .log .inp {
+}
+
+.log .inp {
     width: 100%;
     display: flex;
     height: 2em;
@@ -75,38 +86,44 @@
     border-radius: 0.4em;
     border: 0.01em solid var(--Red);
     padding: 0.5em;
-  }
-  .log .disc {
+}
+
+.log .disc {
     color: var(--darkgraycolor);
     font-family: Roboto;
     font-size: 0.8em;
     font-style: normal;
     font-weight: 400;
     line-height: 140%;
-  }
-  .log .forget {
+}
+
+.log .forget {
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 0.9em;
     width: 100%;
-  }
-  .log .checkbox-container {
+}
+
+.log .checkbox-container {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-  }
-  .log .checkbox-container label {
+}
+
+.log .checkbox-container label {
     color: var(--Red);
     font-family: "Roboto", sans-serif;
     font-size: 1em;
     font-weight: 400;
     line-height: 140%;
-  }
-  .log #custom-checkbox {
+}
+
+.log #custom-checkbox {
     display: none;
-  }
-  .log .custom-checkbox-label {
+}
+
+.log .custom-checkbox-label {
     display: flex;
     align-items: center;
     width: 1em;
@@ -114,8 +131,9 @@
     border: 0.02em solid var(--Red);
     cursor: pointer;
     position: relative;
-  }
-  .log #custom-checkbox:checked + .custom-checkbox-label::after {
+}
+
+.log #custom-checkbox:checked+.custom-checkbox-label::after {
     content: "";
     position: absolute;
     left: 0.3em;
@@ -125,8 +143,9 @@
     border: solid var(--secondaryColor);
     border-width: 0 0.2em 0.2em 0;
     transform: rotate(45deg);
-  }
-  .log #for {
+}
+
+.log #for {
     color: var(--Red);
     text-decoration: none;
     font-family: "Roboto", sans-serif;
@@ -134,11 +153,13 @@
     font-style: normal;
     font-weight: 400;
     line-height: 140%;
-  }
-  #for:hover {
+}
+
+#for:hover {
     opacity: 0.7;
-  }
-  .log .flex1 .btn {
+}
+
+.log .flex1 .btn {
     display: inline-block;
     background-color: var(--Red);
     color: var(--whiteColor);
@@ -153,18 +174,21 @@
     letter-spacing: 0.1em;
     cursor: pointer;
     width: 100%;
-  }
-  .log .flex1 .btn:hover {
+}
+
+.log .flex1 .btn:hover {
     opacity: 0.7;
-  }
-  .log .btn-log {
+}
+
+.log .btn-log {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
     gap: 1em;
-  }
-  .log .blog {
+}
+
+.log .blog {
     justify-content: center;
     display: flex;
     padding: 1.4vh 3.1vw;
@@ -173,8 +197,9 @@
     border-radius: 0.7em;
     background-color: var(--whiteColor);
     border: 2px solid var(--Red);
-  }
-  .log .text {
+}
+
+.log .text {
     display: flex;
     padding: 0vh 2vh;
     justify-content: center;
@@ -186,75 +211,88 @@
     font-weight: 500;
     line-height: 100%;
     letter-spacing: 0.5px;
-  }
-  .log .text:hover {
+}
+
+.log .text:hover {
     opacity: 0.7;
-  }
-  .log hr {
+}
+
+.log hr {
     opacity: 0.3;
-  }
-  .log .sign p {
+}
+
+.log .sign p {
     color: #1e1e1e;
     font-family: "Roboto", sans-serif;
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
     line-height: 140%;
-  }
-  .log #nav {
+}
+
+.log #nav {
     color: var(--Red);
     font-family: "Roboto", sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 140%;
-  }
-  .log #nav:hover {
+}
+
+.log #nav:hover {
     opacity: 0.7;
-  }
-  .log input::placeholder {
+}
+
+.log input::placeholder {
     font-size: 0.8em;
     padding: 0.5em;
-  }
-  /* PasswordInput.css */
-  input::-ms-reveal,
-  input::-ms-clear {
-      display: none;
-  }
-  .password-input-container {
+}
+
+/* PasswordInput.css */
+input::-ms-reveal,
+input::-ms-clear {
+    display: none;
+}
+
+.password-input-container {
     position: relative;
     display: flex;
     align-items: center;
     width: 100%;
-  }
-  .toggle-password-visibility {
+}
+
+.toggle-password-visibility {
     position: absolute;
     right: 1em;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    fill: #353535; 
-  }
-  .toggle-password-visibility.active { 
+    fill: #353535;
+}
+
+.toggle-password-visibility.active {
     fill: var(--Red);
-  }
-  
-  /* responsive */
-  @media screen and (max-width: 1090px) {
+}
+
+/* responsive */
+@media screen and (max-width: 1090px) {
     .log {
-      flex-direction: column;
+        flex-direction: column;
     }
+
     .log .flex2,
     .log .flex1 {
-      width: 100%;
+        width: 100%;
     }
+
     .log .flex2 {
-      order: -1;
+        order: -1;
     }
+
     .log .btn-log {
-      flex-direction: column;
+        flex-direction: column;
     }
+
     .log .flex1 {
-      padding-top: 0;
+        padding-top: 0;
     }
-  }
-  
+}

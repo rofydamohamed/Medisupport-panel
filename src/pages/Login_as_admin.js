@@ -62,7 +62,7 @@ const Login_as_admin = () => {
             <div className="lbl">
               <div className="lbl1">
                 <label htmlFor="">Email Address</label>
-                <input className="inp" type="text" placeholder="Email" />
+                <input className="inp" type="email" placeholder="Email" />
               </div>
               <div className="lbl2">
                 <label htmlFor="">Password</label>

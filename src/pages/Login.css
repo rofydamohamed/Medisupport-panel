@@ -68,13 +68,16 @@ img {
   .logIn {
     flex-direction: column;
   }
+
   .logIn .text,
   .text {
     width: 100%;
   }
+
   .logIn .logIn_img {
     order: -1;
   }
+
   .logIn .text {
     padding-top: 0;
   }

@@ -1,9 +1,10 @@
 .log {
-    display: flex;
-    gap: 1em;
-    align-items: center;
-    height: 100vh;
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  height: 100vh;
 }
+
   .log .flex2 {
     width: 100%;
   }

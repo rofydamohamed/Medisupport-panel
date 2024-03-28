@@ -3,23 +3,9 @@ import { Helmet } from "react-helmet-async";
 import Layout from "../components/Layout";
 import "./Login.css";
 import logIn_img from "../Images/picture.jpg";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../components/AuthContext";
-import "./Login_as_admin.js"
+import { NavLink } from "react-router-dom";
 
 const Login = () => {
-
-  let navigate = useNavigate();
-
-  const handleLoginClick = () => {
-    navigate("./Login_as_admin.js");
-    const isSuccess = true;
-    if (isSuccess) {
-      login();
-    }
-  };
-  const { login } = useAuth();
-
   return (
     <Layout>
       <Helmet>
@@ -33,9 +19,9 @@ const Login = () => {
               <h3>
                 Medi{" "}
                 <svg
-                  width="25"
-                  height="25"
-                  viewBox="0 0 25 25"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -51,12 +37,13 @@ const Login = () => {
               </h3>
             </div>
             <div className="buttons">
-              <button onClick={handleLoginClick} className="btn">Log in as admin</button>
-              <button onClick={handleLoginClick} className="btn">Log in as doctor</button>
+              <NavLink to="/logadmin"
+              className="btn">Log in as admin</NavLink>
+              <NavLink to="/logdoc" className="btn">Log in as doctor</NavLink>
             </div>
           </div>
-          <div className="photo1">
-            <img src={logIn_img} alt="" srcset="" />
+          <div className="logIn_img">
+            <img src={logIn_img} alt="" srcset=""/>
           </div>
         </div>
       </div>

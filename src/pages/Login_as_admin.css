@@ -1,7 +1,8 @@
 .log {
     display: flex;
-    /*flex-direction: row;*/
     gap: 1em;
+    align-items: center;
+    height: 100vh;
 }
 
 .log .flex2 {
@@ -15,24 +16,26 @@
 .log .forml {
     display: flex;
     flex-direction: column;
-    gap: 1em;
 }
 
 .log .flex1 {
     display: flex;
-    padding: 10% 5% 5% 5%;
+    padding: 0% 5% 0% 5%;
     flex-direction: column;
+    justify-content: center;
     gap: 3em;
     width: 100%;
 }
 
 .log h2 {
     color: var(--Red);
-    font-family: "Roboto", sans-serif;
+    /* Heading/2 */
+    font-family: Roboto;
     font-size: 2.625rem;
     font-style: normal;
     font-weight: 700;
     line-height: 110%;
+    /* 2.8875rem */
 }
 
 .log .lbl,
@@ -46,7 +49,7 @@
     flex-direction: column;
     align-items: flex-start;
     align-self: stretch;
-    gap: 1em;
+    gap: 3rem;
 }
 
 .log .lbl1 {
@@ -80,7 +83,7 @@
 .log .inp {
     width: 100%;
     display: flex;
-    height: 2em;
+    height: 3rem;
     align-items: center;
     align-self: stretch;
     border-radius: 0.4em;
@@ -243,7 +246,7 @@
 }
 
 .log input::placeholder {
-    font-size: 0.8em;
+    font-size: 1rem;
     padding: 0.5em;
 }
 

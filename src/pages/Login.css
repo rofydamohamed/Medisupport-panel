@@ -1,25 +1,20 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .logIn {
+  padding-top: 2rem;
   display: flex;
   flex-direction: row;
-  align-items: center;
   height: 100vh;
+  align-items: center;
 }
 
 .text {
   display: flex;
-  padding: 10% 5% 5% 5%;
+  padding: 0% 5% 0% 5%;
   flex-direction: column;
   gap: 5rem;
   width: 100%;
 }
 
-.photo1 {
+.logIn_img {
   object-fit: contain;
   width: 100%;
   min-width: 20rem;
@@ -32,24 +27,23 @@ img {
 
 .logo {
   align-self: center;
-  color: #BE0202;
-  font-family: Arizonia;
+  color: #be0202;
+  font-family: 'Arizonia', cursive;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
 
 .logo h3 {
-  font-family: 'Arizonia', 'sans-serif';
+  font-family: "Arizonia", cursive;
   font-size: 3rem;
   font-weight: 400;
   cursor: pointer;
 }
 
-
-
 .btn {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
   background-color: var(--Red);
   color: var(--whiteColor);
   text-align: center;
@@ -63,7 +57,11 @@ img {
   letter-spacing: 0.1em;
   cursor: pointer;
   width: 100%;
-  margin: 1rem 0rem;
+  margin: 3rem 0rem;
+}
+
+.btn:hover {
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 1090px) {
@@ -76,7 +74,7 @@ img {
     width: 100%;
   }
 
-  .logIn .photo1 {
+  .logIn .logIn_img {
     order: -1;
   }
 

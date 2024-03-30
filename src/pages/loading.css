@@ -1,0 +1,17 @@
+.icons-container{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  min-height: 100vh;
+  padding: 3rem;
+}
+.icons-container .icon {
+  opacity: 0; 
+  transition: opacity 0.5s ease; 
+  min-width:7vw;
+  max-width:7vw ;
+}
+.icon.visible {
+  opacity: 1; 
+}

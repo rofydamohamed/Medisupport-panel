@@ -37,13 +37,16 @@ const Login = () => {
               </h3>
             </div>
             <div className="buttons">
-              <NavLink to="/logadmin"
-              className="btn">Log in as admin</NavLink>
-              <NavLink to="/logdoc" className="btn">Log in as doctor</NavLink>
+              <NavLink to="/logadmin" className="btn">
+                Log in as admin
+              </NavLink>
+              <NavLink to="/logdoc" className="btn">
+                Log in as doctor
+              </NavLink>
             </div>
           </div>
           <div className="logIn_img">
-            <img src={logIn_img} alt="" srcset=""/>
+            <img src={logIn_img} alt="" srcset="" />
           </div>
         </div>
       </div>

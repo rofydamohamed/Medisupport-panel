@@ -15,6 +15,7 @@ import Users from "./pages/Users";
 import Articles from "./pages/Articles";
 import Doctors from "./pages/Doctors";
 import RegisterNewDoctor from "./pages/Register_New_Doctor";
+import Loading from "./pages/loading";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
-    path: "",
+    path: "/dashboard",
     element: <Dashboard />,
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
-    path: "logdoc",
+    path: "/logdoc",
     element: <Loginasdoctor />,
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
@@ -58,6 +59,15 @@ const router = createBrowserRouter([
   {
     path: "",
     element: <Users />,
+    errorElement: <h1>Sorry, No page to display....</h1>,
+  },
+  {
+    path: "/Loading",
+    element: (
+      <>
+        <Loading />
+      </>
+    ),
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {

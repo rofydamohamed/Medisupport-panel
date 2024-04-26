@@ -3,7 +3,7 @@ import "./Login_as_admin.css";
 import React, { useState } from "react";
 import log from "../Images/logIn.jpg";
 // import { NavLink } from "react-router-dom";
-import { loginUser } from "../components/apiService";
+import { loginadmin, saveTokenToLocalStorage } from "../components/apiService";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../components/AuthContext";
 
@@ -21,7 +21,8 @@ const Login_as_admin = () => {
 
   //after-click-btn
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
-
+  const { login } = useAuth();
+  const [accessToken, setAccessToken] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -32,28 +33,18 @@ const Login_as_admin = () => {
         email: formData.get("email"),
         password: formData.get("password"),
       };
-
-      // Call the API service function to log in the user
-      const accessToken = await loginUser(userData);
-
-      // Store the access token in local storage
-      localStorage.setItem("access_token", accessToken);
-      setIsOverlayVisible(!isOverlayVisible);
-
-      // Navigate to the loading page
+      const accessToken = await loginadmin(userData, setAccessToken);
+      saveTokenToLocalStorage(accessToken);
+      setAccessToken(accessToken);
+      console.log("access_token:", accessToken);
       navigate("/Loading");
-
-      // Perform login action
       login();
-
-      // Reset form fields after successful submission
       event.target.reset();
     } catch (error) {
       console.error(error);
       alert("Failed to login user. Please try again.");
     }
   };
-  const { login } = useAuth();
 
   return (
     <>
@@ -62,7 +53,7 @@ const Login_as_admin = () => {
         <meta name="description" content="Login" />
       </Helmet>
 
-      <div  className="log">
+      <div className="log">
         <div className="flex1">
           <div className="logo">
             <h3>
@@ -89,7 +80,7 @@ const Login_as_admin = () => {
           <form className="forml" onSubmit={handleSubmit}>
             <div className="lbl">
               <div className="lbl1">
-              <label htmlFor="email">Email Address</label>
+                <label htmlFor="email">Email Address</label>
                 <input
                   className="inp"
                   type="email"
@@ -126,12 +117,7 @@ const Login_as_admin = () => {
               </div>
             </div>
             <div>
-              <input
-                type="submit"
-                name=""
-                value="Login"
-                className="btn"
-              />
+              <input type="submit" name="" value="Login" className="btn" />
             </div>
           </form>
         </div>

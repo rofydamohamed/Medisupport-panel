@@ -6,8 +6,8 @@ import "./index.css";
 import { HelmetProvider } from "react-helmet-async";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
-import Sidebar from "./components/Sidebar";
+import Dash from "./pages/dash";
+import Dashboard from "./components/Dashboard";
 import Loginasadmin from "./pages/Login_as_admin";
 import Loginasdoctor from "./pages/Login_as_doctor";
 import Contactus from "./pages/Contact_us";
@@ -24,10 +24,19 @@ const router = createBrowserRouter([
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
-    path: "",
+    path: "/Dash",
     element: (
       <>
-        <Sidebar />
+        <Dash />
+      </>
+    ),
+    errorElement: <h1>Sorry, No page to display....</h1>,
+  },
+  {
+    path: "/Loading",
+    element: (
+      <>
+        <Loading />
       </>
     ),
     errorElement: <h1>Sorry, No page to display....</h1>,
@@ -52,12 +61,12 @@ const router = createBrowserRouter([
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
-    path: "",
+    path: "/Contact",
     element: <Contactus/>,
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
-    path: "",
+    path: "/Users",
     element: <Users />,
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
@@ -71,7 +80,7 @@ const router = createBrowserRouter([
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
-    path: "",
+    path: "/Articles",
     element: (
       <>
         <Articles />
@@ -80,7 +89,7 @@ const router = createBrowserRouter([
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
-    path: "",
+    path: "/Doctors",
     element: (
       <>
         <Doctors />
@@ -89,7 +98,7 @@ const router = createBrowserRouter([
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
-    path: "",
+    path: "/Register",
     element: (
       <>
         <RegisterNewDoctor />

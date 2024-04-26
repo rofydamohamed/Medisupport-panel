@@ -37,6 +37,7 @@ const Loading = () => {
     },450);
     return () => clearInterval(intervalId);
   }, []);
+  
   return (
     <>
       <Helmet>

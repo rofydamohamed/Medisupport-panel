@@ -6,18 +6,18 @@
   height: 100%;
 }
 
-h1 {
+.register h1 {
   color: #be0202;
 
   /* Heading/2 */
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif;
   font-size: 2.625rem;
   font-style: normal;
   font-weight: 700;
   line-height: 110%; /* 2.8875rem */
 }
 
-.form {
+.register .form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -36,7 +36,7 @@ h1 {
   flex-shrink: 0;
 }
 
-.text_field {
+.register .text_field {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -44,25 +44,25 @@ h1 {
   align-self: stretch;
 }
 
-.field_group {
+.register .field_group {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
   align-self: stretch;
 }
 
-.label {
+.register .label {
   color: #1f1f1f;
 
   /* Body/S */
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif;
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 400;
   line-height: 140%; /* 1.225rem */
 }
 
-.field {
+.register .field {
   display: flex;
   height: 3rem;
   padding: 0.75rem 1rem;
@@ -73,7 +73,7 @@ h1 {
   border: 1px solid #be0202;
 }
 
-.inp {
+.register .inp {
   flex: 1 0 0;
   border: none;
   color: var(--CoolGray-40, #a2a9b0);
@@ -84,7 +84,7 @@ h1 {
   line-height: 140%;
 }
 
-.field_group .text_field {
+.register .field_group .text_field {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -92,8 +92,7 @@ h1 {
   flex: 1 0 0;
 }
 
-.reg {
-  
+.register .reg {
   display: flex;
   height: 3rem;
   padding: 1rem 0.75rem;
@@ -106,13 +105,13 @@ h1 {
   background: #be0202;
 }
 
-.active {
+.register .active {
   text-decoration: none;
-  color: var(--Default-White, #FFF);
-  font-family: Roboto;
+  color: var(--Default-White, #fff);
+  font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 500;
-  line-height: 100%; /* 1.5rem */
+  line-height: 100%;
   letter-spacing: 0.03125rem;
 }

@@ -93,11 +93,7 @@
   flex: 1 0 0;
 }
 
-<<<<<<< HEAD
-.reg {
-=======
 .register .reg {
->>>>>>> 5eda48d451b2de4fdb9dd7742848d4147d9666bd
   display: flex;
   height: 3rem;
   padding: 1rem 0.75rem;
@@ -113,11 +109,7 @@
 .register .active {
   text-decoration: none;
   color: var(--Default-White, #fff);
-<<<<<<< HEAD
-  font-family: Roboto;
-=======
   font-family: "Roboto", sans-serif;
->>>>>>> 5eda48d451b2de4fdb9dd7742848d4147d9666bd
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 500;

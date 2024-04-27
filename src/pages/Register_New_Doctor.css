@@ -76,7 +76,6 @@
 .register .inp {
   flex: 1 0 0;
   border: none;
-  color: var(--CoolGray-40, #a2a9b0);
   font-family: Roboto;
   font-size: 1rem;
   font-style: normal;

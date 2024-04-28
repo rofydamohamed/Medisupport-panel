@@ -24,32 +24,34 @@
 }
 
 .doctots .table-container {
+  overflow-x: scroll;
+  overflow-y: scroll; 
+  scrollbar-width: none;
+  height: 90%;
+}
+.doctots .table {
+  height: 90%;
   border-radius: 0.625rem;
   border: 1px solid var(--Red);
-  padding: 1rem;
-  overflow-x: scroll; 
-  /* overflow-y: hidden;  */
-  scrollbar-width: none;
 }
-
-.doctots .doctors-container table {
-  border-collapse: collapse;
-}
-
-.doctots .doctors-container table caption {
+.doctots .table h3{
   color: #000;
   font-family: 'Roboto', sans-serif;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  margin-bottom: 1rem;
+  padding: 1rem;
 }
+.doctots .doctors-container table {
+  border-collapse: collapse;
+}
+
 
 .doctots .doctors-container table th,
 .doctots .doctors-container table td {
   border-bottom: 1px solid #dddddd;
-  padding: 1rem;
+  padding: 1.5rem;
   white-space: nowrap;
 }
 
@@ -61,17 +63,16 @@
   font-weight: bold;
   text-align: left;
 }
+.doctots .doctors-container table thead{
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  top: 0;
+  background-color: #ffffff;
+  border-radius: 0.625rem;
+  z-index: 1;
+}
 .doctots .doctors-container table tr:hover {
   background-color: #f2f2f2;
 }
 
-.doctots .doctors-container table caption {
-  position: -webkit-sticky;
-  position: sticky;
-  padding: 1rem;
-  left: 0;
-  top: 0;
-  background-color: #ffffff;
-  text-align: left;
-  z-index: 1; 
-}

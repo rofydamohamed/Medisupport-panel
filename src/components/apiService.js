@@ -93,9 +93,9 @@ export const getFirstEightContacts = async (accessToken) => {
   }
 };
 //getAllDoctors
-export const getAllDoctors = async (accessToken) => {
+export const getAllDoctors = async (accessToken,page) => {
   try {
-    const doctors = await sendRequest("GET", "/all-doctors", null, accessToken);
+    const doctors = await sendRequest("GET", `/all-doctors?page=${page}`, null, accessToken);
     return doctors;
   } catch (error) {
     handleRequestError(error); 

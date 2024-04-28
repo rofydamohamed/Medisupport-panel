@@ -8,8 +8,8 @@ import {
 } from "../components/apiService";
 
 const Dash = () => {
-  const [usersCount, setUsersCount] = useState(0);
   const [doctorsCount, setDoctorsCount] = useState(0);
+  const [usersCount, setUsersCount] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,8 +20,8 @@ const Dash = () => {
   
         console.log("Users count:", users); 
         console.log("Doctors count:", doctors); 
+        setDoctorsCount(doctors.data.count);
         setUsersCount(users.data);
-        setDoctorsCount(doctors.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -58,12 +58,12 @@ const Dash = () => {
               <div className="box">
                 <p className="kind">Doctors</p>
                 <p className="num" name="count">
-                  {doctorsCount.count}
+                  {doctorsCount}
                 </p>
                 <div className="dig">
                   <div
                     className="inner"
-                    style={{ width: `${(doctorsCount.count / 500) * 100}%` }}
+                    style={{ width: `${(doctorsCount / 500) * 100}%` }}
                   ></div>
                 </div>
               </div>

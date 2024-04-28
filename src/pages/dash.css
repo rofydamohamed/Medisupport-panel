@@ -3,16 +3,22 @@
   flex-direction: row;
   height: 100%;
 }
+.dashboard .tables {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 320px);
+  gap: 3rem;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
 .dashboard .dash {
   height: 100%;
-  width:  calc(100% - 320px);
-  border-left: 0.01em solid var(--Red);
+  width: calc(100% - 320px);
 }
 .dashboard .dash .dash-content {
   display: flex;
   flex-direction: column;
-  gap: 1em;
-  padding: 2em;
+  padding: 2em 0rem 0rem 2rem;
   width: 100%;
 }
 .dashboard .dash .dash-content h3 {
@@ -22,6 +28,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  margin-bottom: 2rem;
 }
 .dashboard .dash .dash-content .box1 {
   display: flex;
@@ -42,15 +49,15 @@
 }
 .dashboard .dash .dash-content .box1 .box .kind {
   color: #000;
-  font-family: 'Roboto',sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
 }
-.dashboard .dash .dash-content .box1 .box .num{
+.dashboard .dash .dash-content .box1 .box .num {
   color: var(--Red);
-  font-family: 'Roboto',sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 600;
@@ -63,9 +70,143 @@
   height: 2.5vh;
   border-radius: 1em;
 }
-
 .dashboard .dash .dash-content .box1 .box .dig .inner {
   background-color: var(--Red);
   height: 2.3vh;
   border-radius: 1em;
+}
+
+.dashboard .doctors-container {
+  height: 65%;
+  min-width: calc(100% - 320px);
+  display: flex;
+  flex-direction: column;
+  padding: 0 2.5rem;
+}
+.dashboard .doctors-container h1 {
+  color: var(--Red);
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.dashboard .table-container {
+  overflow-x: scroll;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  height: 90%;
+}
+.dashboard .table h3 {
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding: 1rem;
+}
+.dashboard .doctors-container table {
+  border-collapse: collapse;
+}
+
+.dashboard .doctors-container table th,
+.dashboard .doctors-container table td {
+  border-bottom: 1px solid #dddddd;
+  padding: 1.5rem;
+  white-space: nowrap;
+}
+.dashboard .doctors-container table tbody tr td:nth-child(7),
+.dashboard .doctors-container table tbody tr td:nth-child(10) {
+  color: var(--Red);
+}
+
+.dashboard .doctors-container table td svg {
+  cursor: pointer;
+}
+
+.dashboard .doctors-container table th {
+  font-weight: bold;
+  text-align: left;
+}
+.dashboard .doctors-container table thead {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  top: 0;
+  background-color: #ffffff;
+  border-radius: 0.625rem;
+  z-index: 1;
+}
+.dashboard .doctors-container table tr:hover {
+  background-color: #f2f2f2;
+}
+
+.dashboard .Contacts-container {
+  height: 65%;
+  min-width: calc(100% - 320px);
+  display: flex;
+  flex-direction: column;
+  padding: 0 2.5rem;
+}
+
+.dashboard .Contacts-container h1 {
+  color: var(--Red);
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.dashboard .table-container {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  height: 90%;
+}
+.dashboard .table {
+  height: 90%;
+  width: 100%;
+  border-radius: 0.625rem;
+  border: 1px solid var(--Red);
+}
+.dashboard .table h3 {
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding: 1rem;
+}
+.dashboard .Contacts-container table {
+  border-collapse: collapse;
+}
+
+.dashboard .Contacts-container table th,
+.dashboard .Contacts-container table td {
+  border-bottom: 1px solid #dddddd;
+  padding: 1.5rem;
+}
+
+.dashboard .Contacts-container table td svg {
+  cursor: pointer;
+}
+
+.dashboard .Contacts-container table th {
+  font-weight: bold;
+  text-align: left;
+}
+.dashboard .Contacts-container table thead {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  top: 0;
+  background-color: #ffffff;
+  border-radius: 0.625rem;
+  z-index: 1;
+}
+.dashboard .Contacts-container table tr:hover {
+  background-color: #f2f2f2;
 }

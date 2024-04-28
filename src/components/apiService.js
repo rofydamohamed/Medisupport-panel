@@ -75,9 +75,9 @@ export const updatePassword = async (passwordData, accessToken) => {
   }
 };
 //getAllContacts
-export const getAllContacts = async (accessToken) => {
+export const getAllContacts = async (accessToken,page) => {
   try {
-    const contacts = await sendRequest("GET", "/all-contact", null, accessToken);
+    const contacts = await sendRequest("GET", `/all-contact?page=${page}`, null, accessToken);
     return contacts;
   } catch (error) {
     handleRequestError(error); 

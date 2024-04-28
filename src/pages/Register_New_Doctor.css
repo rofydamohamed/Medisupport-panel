@@ -1,20 +1,19 @@
 .page {
   display: flex;
   flex-direction: row;
-  margin: 0;
-  padding: 0;
+}
+.page .register{
+  /* width:  calc(100% - 320px); */
+  /* border-left: 0.01em solid var(--Red); */
   height: 100%;
 }
-
 .register h1 {
   color: #be0202;
-
-  /* Heading/2 */
   font-family: "Roboto", sans-serif;
   font-size: 2.625rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 110%; /* 2.8875rem */
+  line-height: 110%; 
 }
 
 .register .form {

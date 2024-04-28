@@ -14,8 +14,6 @@ export const handleRequestError = (error) => {
   }
   throw new Error(errorMessage); 
 };
-
-
 // send request with stored token  for data
 export const sendRequest = async (method, url, data, accessToken) => {
   try {
@@ -58,7 +56,6 @@ export const logoutadmin = async (accessToken) => {
     handleRequestError(error); 
   }
 };
-
 //getUserProfile
 export const getUserProfile = async (accessToken) => {
   try {
@@ -68,7 +65,6 @@ export const getUserProfile = async (accessToken) => {
     handleRequestError(error); 
   }
 };
-
 //updatePassword
 export const updatePassword = async (passwordData, accessToken) => {
   try {
@@ -78,7 +74,6 @@ export const updatePassword = async (passwordData, accessToken) => {
     handleRequestError(error); 
   }
 };
-
 //getAllContacts
 export const getAllContacts = async (accessToken) => {
   try {
@@ -88,7 +83,6 @@ export const getAllContacts = async (accessToken) => {
     handleRequestError(error); 
   }
 };
-
 //getFirstEightContacts
 export const getFirstEightContacts = async (accessToken) => {
   try {
@@ -98,7 +92,6 @@ export const getFirstEightContacts = async (accessToken) => {
     handleRequestError(error); 
   }
 };
-
 //getAllDoctors
 export const getAllDoctors = async (accessToken) => {
   try {

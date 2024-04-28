@@ -323,7 +323,7 @@ const Dashboard = () => {
               Register New Doctor
             </NavLink>
           </li>
-        </ul>
+        </ul>  
       </div>
     </>
   );

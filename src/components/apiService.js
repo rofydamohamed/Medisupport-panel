@@ -14,8 +14,6 @@ export const handleRequestError = (error) => {
   }
   throw new Error(errorMessage); 
 };
-
-
 // send request with stored token  for data
 export const sendRequest = async (method, url, data, accessToken) => {
   try {
@@ -58,7 +56,6 @@ export const logoutadmin = async (accessToken) => {
     handleRequestError(error); 
   }
 };
-
 //getUserProfile
 export const getUserProfile = async (accessToken) => {
   try {
@@ -68,7 +65,6 @@ export const getUserProfile = async (accessToken) => {
     handleRequestError(error); 
   }
 };
-
 //updatePassword
 export const updatePassword = async (passwordData, accessToken) => {
   try {
@@ -78,17 +74,15 @@ export const updatePassword = async (passwordData, accessToken) => {
     handleRequestError(error); 
   }
 };
-
 //getAllContacts
-export const getAllContacts = async (accessToken) => {
+export const getAllContacts = async (accessToken,page) => {
   try {
-    const contacts = await sendRequest("GET", "/all-contact", null, accessToken);
+    const contacts = await sendRequest("GET", `/all-contact?page=${page}`, null, accessToken);
     return contacts;
   } catch (error) {
     handleRequestError(error); 
   }
 };
-
 //getFirstEightContacts
 export const getFirstEightContacts = async (accessToken) => {
   try {
@@ -98,11 +92,10 @@ export const getFirstEightContacts = async (accessToken) => {
     handleRequestError(error); 
   }
 };
-
 //getAllDoctors
-export const getAllDoctors = async (accessToken) => {
+export const getAllDoctors = async (accessToken,page) => {
   try {
-    const doctors = await sendRequest("GET", "/all-doctors", null, accessToken);
+    const doctors = await sendRequest("GET", `/all-doctors?page=${page}`, null, accessToken);
     return doctors;
   } catch (error) {
     handleRequestError(error); 

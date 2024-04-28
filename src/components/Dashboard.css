@@ -1,5 +1,5 @@
 .sidebar {
-  width: 250px;
+  min-width: 320px;
   height: 100%;
   color: #000000;
   border-right: 0.02em solid var(--Red);
@@ -13,7 +13,7 @@
   text-align: center;
 }
 .sidebar .sidebar-header h4 {
-  font-size: 1em;
+  font-size: 1.5em;
   font-family: "Arizonia", cursive;
 }
 .sidebar .sidebar-header p {
@@ -30,13 +30,12 @@
 .sidebar .nav {
   list-style-type: none;
   padding: 0;
-  height: 100%;
 }
 .sidebar .nav li a {
   display: flex;
   align-items: center;
   gap: 1em;
-  padding: 0.6em;
+  padding: 0.8em;
   font-size: medium;
   text-decoration: none;
   color: #000000;

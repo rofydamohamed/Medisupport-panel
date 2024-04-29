@@ -5,7 +5,6 @@
 .page .register{
   /* width:  calc(100% - 320px); */
   /* border-left: 0.01em solid var(--Red); */
-  height: 100%;
 }
 .register h1 {
   color: #be0202;

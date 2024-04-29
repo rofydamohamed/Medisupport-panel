@@ -1,10 +1,38 @@
-import { NavLink} from "react-router-dom";
-
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import { getUserProfile } from "../components/apiService";
 import "./Dashboard.css";
 import { Helmet } from "react-helmet-async";
-
+//import { eachDayOfInterval, format } from "date-fns";
 
 const Dashboard = () => {
+  const [userProfile, setuserProfile] = useState([]);
+
+  useEffect(() => {
+    const fetchuserProfile = async () => {
+      try {
+        const accessToken = localStorage.getItem("accessToken");
+        const UserProfile = await getUserProfile(accessToken);
+
+        const formattedUserProfile = UserProfile.data
+          ? [
+              {
+                fname: UserProfile.data.first_name,
+                lname: UserProfile.data.last_name,
+              },
+            ]
+          : [];
+
+        console.log("formattedUserProfile:", formattedUserProfile);
+        setuserProfile(formattedUserProfile);
+      } catch (error) {
+        console.error("Error fetching UserProfile:", error);
+      }
+    };
+
+    fetchuserProfile();
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -34,13 +62,15 @@ const Dashboard = () => {
               support
             </h4>
           </div>
-          <p>
-            Nada Yakout <span>Admin</span>
-          </p>
+          {userProfile.map((profile, index) => (
+            <p key={index}>
+              {profile.fname} {profile.lname} <span>Admin</span>
+            </p>
+          ))}
         </div>
         <ul className="nav">
           <li className="filll">
-            <NavLink to="/Dash" >
+            <NavLink to="/Dash">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="54"
@@ -123,7 +153,7 @@ const Dashboard = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/Contact"  className="fill">
+            <NavLink to="/Contact" className="fill">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="50"
@@ -140,7 +170,7 @@ const Dashboard = () => {
             </NavLink>
           </li>
           <li className="filll">
-            <NavLink to="/Doctors" >
+            <NavLink to="/Doctors">
               {" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -323,7 +353,7 @@ const Dashboard = () => {
               Register New Doctor
             </NavLink>
           </li>
-        </ul>  
+        </ul>
       </div>
     </>
   );

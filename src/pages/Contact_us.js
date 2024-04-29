@@ -28,7 +28,7 @@ const ContactUs = () => {
           // Concatenate the records from the current page to the existing records
           allContacts = allContacts.concat(
             Contacts.data.map((Contacts,index) => ({
-              id: "1",
+              id: Contacts.id,
               Username: Contacts.username,
               Email: Contacts.email,
               Message: Contacts.message,
@@ -77,7 +77,7 @@ const ContactUs = () => {
                 </thead>
                 <tbody>
                   {ContactsData.map((Contact) => (
-                    <tr key={Contact.id}>
+                    <tr>
                       <td>{Contact.id}</td>
                       <td>{Contact.Username}</td>
                       <td>{Contact.Email}</td>

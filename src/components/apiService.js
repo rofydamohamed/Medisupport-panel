@@ -12,7 +12,7 @@ export const handleRequestError = (error) => {
   } else {
     errorMessage = `Error: ${error.message}`;
   }
-  throw new Error(errorMessage); 
+  throw new Error(errorMessage);
 };
 // send request with stored token  for data
 export const sendRequest = async (method, url, data, accessToken) => {
@@ -25,7 +25,7 @@ export const sendRequest = async (method, url, data, accessToken) => {
     });
     return response.data;
   } catch (error) {
-    handleRequestError(error); 
+    handleRequestError(error);
   }
 };
 export const loginadmin = async (userloginData, setAccessToken) => {
@@ -53,16 +53,21 @@ export const logoutadmin = async (accessToken) => {
     await sendRequest("POST", "/auth/admin/logout", null, accessToken);
     return true; // Logout successful
   } catch (error) {
-    handleRequestError(error); 
+    handleRequestError(error);
   }
 };
 //getUserProfile
 export const getUserProfile = async (accessToken) => {
   try {
-    const userProfile = await sendRequest("GET", "/auth/admin/user-profile", null, accessToken);
+    const userProfile = await sendRequest(
+      "GET",
+      "/auth/admin/user-profile",
+      null,
+      accessToken
+    );
     return userProfile;
   } catch (error) {
-    handleRequestError(error); 
+    handleRequestError(error);
   }
 };
 //updatePassword
@@ -71,44 +76,58 @@ export const updatePassword = async (passwordData, accessToken) => {
     await sendRequest("PUT", "/admin-password", passwordData, accessToken);
     return true; // Password updated successfully
   } catch (error) {
-    handleRequestError(error); 
+    handleRequestError(error);
   }
 };
 //getAllContacts
-export const getAllContacts = async (accessToken,page) => {
+export const getAllContacts = async (accessToken, page) => {
   try {
-    const contacts = await sendRequest("GET", `/all-contact?page=${page}`, null, accessToken);
+    const contacts = await sendRequest(
+      "GET",
+      `/all-contact?page=${page}`,
+      null,
+      accessToken
+    );
     return contacts;
   } catch (error) {
-    handleRequestError(error); 
+    handleRequestError(error);
   }
 };
 //getFirstEightContacts
 export const getFirstEightContacts = async (accessToken) => {
   try {
-    const contacts = await sendRequest("GET", "/contacts/first-eight", null, accessToken);
+    const contacts = await sendRequest(
+      "GET",
+      "/contacts/first-eight",
+      null,
+      accessToken
+    );
     return contacts;
   } catch (error) {
-    handleRequestError(error); 
+    handleRequestError(error);
   }
 };
 //getAllDoctors
-export const getAllDoctors = async (accessToken,page) => {
+export const getAllDoctors = async (accessToken, page) => {
   try {
-    const doctors = await sendRequest("GET", `/all-doctors?page=${page}`, null, accessToken);
+    const doctors = await sendRequest(
+      "GET",
+      `/all-doctors?page=${page}`,
+      null,
+      accessToken
+    );
     return doctors;
   } catch (error) {
-    handleRequestError(error); 
+    handleRequestError(error);
   }
 };
-
 //deleteDoctor
 export const deleteDoctor = async (doctorId, accessToken) => {
   try {
     await sendRequest("DELETE", `/doctors/${doctorId}`, null, accessToken);
     return true; // Doctor deleted successfully
   } catch (error) {
-    handleRequestError(error); 
+    handleRequestError(error);
   }
 };
 
@@ -118,27 +137,37 @@ export const getDoctorsCount = async (accessToken) => {
     const count = await sendRequest("GET", "/doctors/count", null, accessToken);
     return count;
   } catch (error) {
-    handleRequestError(error); 
+    handleRequestError(error);
   }
 };
 
 //getFirstEightDoctors
 export const getFirstEightDoctors = async (accessToken) => {
   try {
-    const doctors = await sendRequest("GET", "/doctors/first-eight", null, accessToken);
+    const doctors = await sendRequest(
+      "GET",
+      "/doctors/first-eight",
+      null,
+      accessToken
+    );
     return doctors;
   } catch (error) {
-    handleRequestError(error); 
+    handleRequestError(error);
   }
 };
 
 //getAllUsers
-export const getAllUsers = async (accessToken) => {
+export const getAllUsers = async (accessToken,page) => {
   try {
-    const users = await sendRequest("GET", "/all-users", null, accessToken);
+    const users = await sendRequest(
+      "GET",
+      `/all-users?page=${page}`,
+      null,
+      accessToken
+    );
     return users;
   } catch (error) {
-    handleRequestError(error); 
+    handleRequestError(error);
   }
 };
 
@@ -148,18 +177,21 @@ export const countAllUsers = async (accessToken) => {
     const count = await sendRequest("GET", "/user/count", null, accessToken);
     return count;
   } catch (error) {
-    handleRequestError(error); 
+    handleRequestError(error);
   }
 };
-
 
 //getFirstEightUsers
 export const getFirstEightUsers = async (accessToken) => {
   try {
-    const users = await sendRequest("GET", "/users/first-eight", null, accessToken);
+    const users = await sendRequest(
+      "GET",
+      "/users/first-eight",
+      null,
+      accessToken
+    );
     return users;
   } catch (error) {
-    handleRequestError(error); 
+    handleRequestError(error);
   }
 };
-

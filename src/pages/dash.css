@@ -212,6 +212,7 @@
 .dashboard .Users-container {
   height: 65%;
   min-width: calc(64% - 320px) !important;
+  width:calc(80% - 320px);
   display: flex;
   flex-direction: column;
   padding: 0.5rem 2.5rem;

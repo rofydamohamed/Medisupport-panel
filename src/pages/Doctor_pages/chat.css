@@ -1,0 +1,464 @@
+.chatting {
+  display: flex;
+  height: 100vh;
+  padding: 2rem;
+  gap: 1.25em;
+}
+.chatting span {
+  animation: none;
+}
+.chatting .sidebarchat {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  gap: 1.5rem;
+}
+.chatting .sidebarchat-hidden {
+  display: none;
+}
+.hidden{
+  display: none;
+}
+.chatting .sidebarchat .sidebar {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  gap: 1.5rem;
+}
+.chatting .sidebarchat .sidebar::-webkit-scrollbar {
+  display: none;
+}
+.chatting .sidebarchat h3 {
+  color: var(--Red);
+  font-family: "Roboto", sans-serif;
+  font-size: clamp(1rem, calc(1vw + 3vw), 1.8rem);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.chatting .sidebarchat .sidebar .doctorschat .slide {
+  display: flex;
+  flex-direction: row;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 1.25em 1em;
+  gap: 0.5em;
+  width: 100%;
+  cursor: pointer;
+}
+.chatting .sidebarchat .sidebar .doctorschat .slide:hover {
+  background: #d9d9d9;
+}
+.chatting .sidebarchat .sidebar .doctorschat .slide .doctorAvatarContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+}
+.chatting .sidebarchat .sidebar .doctorschat .slide .doctorAvatar {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chatting .sidebarchat .sidebar .doctorschat .slide .doctorAvatar .zoomedImage {
+  object-fit: cover;
+  object-position: -2px center;
+  width: auto;
+  height: 150%;
+  transform: translateY(3%);
+  z-index: 1;
+}
+.chatting .sidebarchat .sidebar .doctorschat .slide .doctorInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+.chatting .sidebarchat .sidebar .doctorschat .slide .doctorInfo .doctortext {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.chatting .sidebarchat .sidebar .doctorschat .slide .doctorInfo .doctorName {
+  color: #1c1f1e;
+  font-size: clamp(0.5rem, calc(1vw + 3vw), 1.2rem);
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+.chatting
+  .sidebarchat
+  .sidebar
+  .doctorschat
+  .slide
+  .doctorInfo
+  .doctorSpeciality,
+.chatting .sidebarchat .sidebar .doctorschat .slide .doctorInfo .lastMessage,
+.chatting .sidebarchat .sidebar .doctorschat .slide .doctorInfo .messageTime {
+  color: #a7a6a5;
+  font-size: 0.9rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
+
+.chatting .sidebarchat .sidebar .doctorschat .slide .doctorInfo .lastMessage {
+  font-size: 0.9375rem;
+  width: 100%;
+  max-width: 19vw;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.chatting
+  .sidebarchat
+  .sidebar
+  .doctorschat
+  .slide
+  .doctorInfo
+  .unreadMessages {
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  border: 0.1rem solid var(--Red);
+  background-color: var(--Red);
+  opacity: 0.7;
+  border-radius: 50%;
+  color: white;
+  font-size: clamp(0.5rem, calc(1vw + 3vw), 0.7rem);
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  line-height: 16px;
+}
+.chatting .sidebarchat .sidebar .doctorschat .slide .doctorInfo .mess {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 2.5rem;
+  align-items: stretch;
+}
+.chatting .sidebarchat .sidebar .doctorschat .slide .onlineIndicator {
+  position: absolute;
+  width: 0.625rem;
+  height: 0.625rem;
+  background-color: #66ca98;
+  border-radius: 50%;
+  border: 1px solid white;
+  right: 0.1em;
+  bottom: 0.1em;
+  transform: translate(50%, 50%);
+  z-index: 2;
+}
+.conversation {
+  display: flex;
+  flex: 3;
+  background-color: #fff;
+  height: 100%;
+  display: none;
+}
+.conversation.active {
+  display: flex;
+  flex-direction: column;
+}
+.conversation-default {
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  color: #778899;
+}
+.conversation-default i {
+  font-size: 32px;
+}
+.conversation-default p {
+  margin-top: 16px;
+}
+
+.chatm {
+  position: relative;
+  display: flex;
+  gap: 2rem;
+  flex: 3;
+  flex-direction: column;
+}
+.chatm .doctorinfor {
+  display: flex;
+  flex-direction: row;
+  gap: clamp(1rem, calc(1vw + 3vw), 2rem);
+}
+.chatm .doctorinfor .infor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.13rem;
+}
+.chatm .doctorinfor .infor h3 {
+  color: #2e2e2e;
+  font-family: "Roboto", sans-serif;
+  font-size: clamp(1rem, calc(1vw + 3vw), 1.8rem);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 0.75rem;
+}
+.chatm .doctorinfor .infor p {
+  color: #2e2e2e;
+  font-family: "Roboto", sans-serif;
+  font-size: clamp(1rem, calc(1vw + 3vw), 1.5rem);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 0.75rem;
+}
+.chatm .doctorinfor .contactimgchat {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chatm .imgd {
+  position: relative;
+  overflow: hidden;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+}
+.chatm .imgd img {
+  position: absolute;
+  object-fit: cover;
+  object-position: top right;
+  top: 0;
+  left: 0;
+  width: 116%;
+  height: 114%;
+    transform: translate(-2%, -8%) scale(1);
+}
+.chatm .doctorinfor .contactimgchat .onlineIndicator {
+  width: clamp(0.9rem, calc(1vw + 3vw), 1rem);
+  height: clamp(0.9rem, calc(1vw + 3vw), 1rem);
+  background-color: #66ca98;
+  border-radius: 50%;
+  border: 1px solid white;
+  position: absolute;
+  right: 0.4em;
+  bottom: -0.1em;
+  z-index: 2;
+}
+.chatm .chat-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
+  overflow-y: auto;
+}
+.chatm .chat-messages {
+  display: flex;
+  flex-direction: column-reverse;
+  overflow-y: auto;
+  width: 100%;
+}
+.chatm .chat-messages::-webkit-scrollbar {
+  display: none;
+}
+.chatm .chat-messages .message {
+  margin: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.chatm .chat-messages .message.user {
+  padding: 1rem;
+  border-radius: 1.25rem 0rem 1.25rem 1.25rem;
+  background: var(--Red);
+  color: #ffffff;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0.2rem;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: pre-wrap;
+  align-self: flex-end;
+  max-width: 50%;
+}
+.chatm .chat-messages .message.doctor {
+  padding: 1rem;
+  color: #1f1f1f;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border-radius: 0rem 1.25rem 1.25rem 1.25rem;
+  background: #f2f7fb;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: pre-wrap;
+  align-self: flex-start;
+  max-width: 50%;
+}
+
+.chatm .chat-messages .user-time svg{
+  color: #d9d9d9;
+
+}
+.chatm .chat-messages .user-time {
+  display: flex;
+  justify-content: right;
+  font-size: 0.7rem;
+  color: #c8c8c8;
+}
+.chatm .chat-messages .doctor-time {
+  display: flex;
+  justify-content: right;  
+  font-size: 0.7rem;
+  color: #8a8a8a;
+}
+.doctor-time svg {
+  display: none;
+}
+.input-area {
+  display: flex;
+  gap: 0.5rem;
+}
+.input-area .input-container {
+  position: relative;
+  width: 100%;
+}
+.input-area .input-container .input-icon {
+  position: absolute;
+  height: 100%;
+  /* top: -0.3em; */
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  cursor: pointer;
+}
+.input-area .input-container .input-icon svg {
+  width: 4vw;
+  height: 4vh;
+}
+.input-area .input-container .textarea-custom {
+  width: 100%;
+  /* height: 5.5vh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  border: 1px solid var(--Red);
+  background: #fff;
+  box-sizing: border-box;
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding: 0rem 2.5rem;
+}
+.input-area svg {
+  min-width: 30px;
+  width: 4vw;
+  height: 6vh;
+}
+.input-area .input-container svg:hover {
+  opacity: 0.7;
+}
+.input-area .input-container .textarea:focus {
+  outline: none;
+  border: 1px solid transparent;
+}
+.input-area .input-container .textarea::placeholder {
+  font-size: 80%;
+}
+.input-area .input-container .textarea {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  padding-top: 1rem;
+  /* padding-left: 1rem; */
+  box-sizing: border-box;
+  border: none;
+  resize: none;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.textarea-custom::-webkit-scrollbar {
+  display: none;
+}
+.input-area button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.input-area button:hover {
+  opacity: 0.7;
+}
+.emoji-picker-position {
+  position: relative;
+  display: flex;
+}
+.emoji-picker-container {
+  position: absolute;
+  width: 10vw;
+  max-height: 20vh;
+  bottom: 90%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10em);
+  transition: transform 0.5s ease, visibility 0.5s ease;
+  z-index: 5;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 1em;
+  padding: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  visibility: hidden;
+  opacity: 0;
+}
+.emoji-picker-container.show {
+  transform: translateX(-50%) translateY(0);
+  visibility: visible;
+  opacity: 1;
+}
+.emoji-picker-container::-webkit-scrollbar {
+  display: none;
+}
+
+.chatm .convback {
+  /* margin-left: -2.7em; */
+  margin-top: -1.9em;
+}
+.chatm .convback:hover {
+  opacity: 0.7;
+}
+.chatm .fa-solid.fa-arrow-left {
+  cursor: pointer;
+  color: var(--Red);
+  display: none;
+  width: 1em;
+  padding: 1em 0.5em;
+}
+
+/*Res*/
+@media screen and (max-width: 750px) {
+  .chatm {
+    width: 100%;
+  }
+  .chatm .fa-solid.fa-arrow-left {
+    display: flex;
+  }
+  .conversation.active {
+    z-index: 5;
+  }
+  .conversation-default.active {
+    padding: 16px;
+  }
+  .chatt header,
+  .chatt .footer {
+    display: none;
+  }
+}

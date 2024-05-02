@@ -7,8 +7,8 @@ import { HelmetProvider } from "react-helmet-async";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./pages/Login";
 import Dash from "./pages/dash";
-import Dashboard from "./components/Dashboard";
 import Dashdoc from "./pages/Doctor_pages/dashdoc";
+import Dashboard from "./components/Dashboard";
 import Dashboarddoc from "./pages/Doctor_pages/dashboard";
 import Loginasadmin from "./pages/Login_as_admin";
 import Loginasdoctor from "./pages/Login_as_doctor";
@@ -55,8 +55,6 @@ const router = createBrowserRouter([
     element: <Dashboard />,
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
-
-
   {
     path: "/dashdoc",
     element: <Dashdoc />,

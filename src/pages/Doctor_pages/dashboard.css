@@ -1,0 +1,68 @@
+.sidebardoc {
+  min-width: 320px;
+  height: 100%;
+  color: #000000;
+  border-right: 0.02em solid var(--Red);
+}
+.sidebardoc .sidebardoc-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  font-size: 1.8em;
+  padding: 2rem;
+  text-align: center;
+}
+.sidebardoc .sidebardoc-header h4 {
+  font-size: 1.5em;
+  font-family: "Arizonia", cursive;
+}
+.sidebardoc .sidebardoc-header p {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  font-size: 1.8rem;
+  font-family: "Arizonia", cursive;
+}
+.sidebardoc .sidebardoc-header span {
+  font-size: 1.5rem;
+  font-family: "Arizonia", cursive;
+}
+.sidebardoc .nav {
+  list-style-type: none;
+  padding: 0;
+}
+.sidebardoc .nav li a {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding: 0.8em;
+  font-size: medium;
+  text-decoration: none;
+  color: #000000;
+  border: 0.01em solid var(--Red);
+}
+.sidebardoc .nav  svg {
+  width: 40px;
+  stroke: black;
+}
+.sidebardoc .nav .fill  svg{
+  width: 40px;
+  fill: black;
+}
+.sidebardoc .nav li a:hover {
+  background-color: #eae8e8;
+  border-radius: 0.5em 0.5em 0em 0em;
+}
+.sidebardoc .nav li a.active {
+  background-color: var(--Red);
+  color: #fff;
+  border-radius: 0.5em 0.5em 0em 0em;
+}
+.sidebardoc .nav  li a.active   svg{
+  stroke: rgb(255, 255, 255);
+  fill: rgb(255, 255, 255) ;
+}
+.sidebardoc .nav  .filll  a.active  svg{
+  stroke: rgb(255, 255, 255);
+  fill: none;
+}

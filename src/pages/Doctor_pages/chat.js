@@ -2,6 +2,8 @@ import { Helmet } from "react-helmet-async";
 import React, { useState, useRef, useEffect } from "react";
 import "./chat.css";
 //import docchat1 from "../images/doc_chat1.jpeg";
+import Dashboarddoc from "./dashboard";
+
 import {
   getUserContacts,
   userChatAuth,
@@ -624,6 +626,7 @@ const Chat = () => {
         />{" "}
       </Helmet>
       <div className="chatt">
+      <Dashboarddoc />
         <div className="chatting">
           <div className={showSidebar ? "sidebarchat" : "sidebarchat-hidden"}>
             <h3 style={{ display: showSidebar ? "block" : "none" }}>

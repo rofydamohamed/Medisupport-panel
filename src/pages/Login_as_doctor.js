@@ -49,7 +49,7 @@ const LoginAsDoctor = () => {
   useEffect(() => {
     if (accessToken) {
       const redirectTimer = setTimeout(() => {
-        navigate("/dashboarddoc");
+        navigate("/dashdoc");
       }, 2000);
 
       return () => clearTimeout(redirectTimer);

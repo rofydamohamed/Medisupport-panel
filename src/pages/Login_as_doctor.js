@@ -1,9 +1,9 @@
 import "./Login_as_doctor.css";
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import log from "../Images/logIn.jpg";
 import { Helmet } from "react-helmet-async";
 // import { NavLink } from "react-router-dom";
-import { loginadmin, saveTokenToLocalStorage } from "../components/apiService";
+import { logindoctor, saveTokenToLocalStorage } from "../components/apiService";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../components/AuthContext";
 
@@ -34,11 +34,11 @@ const LoginAsDoctor = () => {
         email: formData.get("email"),
         password: formData.get("password"),
       };
-      const accessToken = await loginadmin(userData, setAccessToken);
+      const accessToken = await logindoctor(userData, setAccessToken);
       saveTokenToLocalStorage(accessToken);
       setAccessToken(accessToken);
       console.log("access_token:", accessToken);
-      navigate("/Loading");
+      setIsOverlayVisible(true);
       login();
       event.target.reset();
     } catch (error) {
@@ -46,7 +46,15 @@ const LoginAsDoctor = () => {
       alert("Failed to login user. Please try again.");
     }
   };
+  useEffect(() => {
+    if (accessToken) {
+      const redirectTimer = setTimeout(() => {
+        navigate("/dashboarddoc");
+      }, 2000);
 
+      return () => clearTimeout(redirectTimer);
+    }
+  }, [accessToken, navigate]);
 
   return (
     <>

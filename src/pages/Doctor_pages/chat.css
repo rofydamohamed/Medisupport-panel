@@ -1,6 +1,14 @@
-.chatting {
+.chatt{
   display: flex;
-  height: 100vh;
+  flex-direction: row;
+  height: 100%;
+}
+.chatting {
+  height: 100%;
+  min-width: calc(100% - 320px);
+  /* width: 100%; */
+  display: flex;
+  /* height: 100vh; */
   padding: 2rem;
   gap: 1.25em;
 }
@@ -19,13 +27,13 @@
 .hidden{
   display: none;
 }
-.chatting .sidebarchat .sidebar {
+.chatting .sidebarchat .sidedoc {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   gap: 1.5rem;
 }
-.chatting .sidebarchat .sidebar::-webkit-scrollbar {
+.chatting .sidebarchat .sidedoc::-webkit-scrollbar {
   display: none;
 }
 .chatting .sidebarchat h3 {
@@ -36,7 +44,7 @@
   font-weight: 700;
   line-height: normal;
 }
-.chatting .sidebarchat .sidebar .doctorschat .slide {
+.chatting .sidebarchat .sidedoc .doctorschat .slide {
   display: flex;
   flex-direction: row;
   border-radius: 1.25rem;
@@ -46,10 +54,10 @@
   width: 100%;
   cursor: pointer;
 }
-.chatting .sidebarchat .sidebar .doctorschat .slide:hover {
+.chatting .sidebarchat .sidedoc .doctorschat .slide:hover {
   background: #d9d9d9;
 }
-.chatting .sidebarchat .sidebar .doctorschat .slide .doctorAvatarContainer {
+.chatting .sidebarchat .sidedoc .doctorschat .slide .doctorAvatarContainer {
   position: relative;
   display: flex;
   align-items: center;
@@ -57,7 +65,7 @@
   width: 50px;
   height: 50px;
 }
-.chatting .sidebarchat .sidebar .doctorschat .slide .doctorAvatar {
+.chatting .sidebarchat .sidedoc .doctorschat .slide .doctorAvatar {
   width: 100%;
   height: 100%;
   position: relative;
@@ -67,7 +75,7 @@
   align-items: center;
   justify-content: center;
 }
-.chatting .sidebarchat .sidebar .doctorschat .slide .doctorAvatar .zoomedImage {
+.chatting .sidebarchat .sidedoc .doctorschat .slide .doctorAvatar .zoomedImage {
   object-fit: cover;
   object-position: -2px center;
   width: auto;
@@ -75,18 +83,18 @@
   transform: translateY(3%);
   z-index: 1;
 }
-.chatting .sidebarchat .sidebar .doctorschat .slide .doctorInfo {
+.chatting .sidebarchat .sidedoc .doctorschat .slide .doctorInfo {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
 }
-.chatting .sidebarchat .sidebar .doctorschat .slide .doctorInfo .doctortext {
+.chatting .sidebarchat .sidedoc .doctorschat .slide .doctorInfo .doctortext {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
-.chatting .sidebarchat .sidebar .doctorschat .slide .doctorInfo .doctorName {
+.chatting .sidebarchat .sidedoc .doctorschat .slide .doctorInfo .doctorName {
   color: #1c1f1e;
   font-size: clamp(0.5rem, calc(1vw + 3vw), 1.2rem);
   font-family: "Roboto", sans-serif;
@@ -99,18 +107,18 @@
   .slide
   .doctorInfo
   .doctorSpeciality,
-.chatting .sidebarchat .sidebar .doctorschat .slide .doctorInfo .lastMessage,
-.chatting .sidebarchat .sidebar .doctorschat .slide .doctorInfo .messageTime {
+.chatting .sidebarchat .sidedoc .doctorschat .slide .doctorInfo .lastMessage,
+.chatting .sidebarchat .sidedoc .doctorschat .slide .doctorInfo .messageTime {
   color: #a7a6a5;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
 }
 
-.chatting .sidebarchat .sidebar .doctorschat .slide .doctorInfo .lastMessage {
+.chatting .sidebarchat .sidedoc .doctorschat .slide .doctorInfo .lastMessage {
   font-size: 0.9375rem;
   width: 100%;
-  max-width: 19vw;
+  max-width: 16vw;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -119,7 +127,7 @@
 }
 .chatting
   .sidebarchat
-  .sidebar
+  .sidedoc
   .doctorschat
   .slide
   .doctorInfo
@@ -137,14 +145,14 @@
   font-weight: 500;
   line-height: 16px;
 }
-.chatting .sidebarchat .sidebar .doctorschat .slide .doctorInfo .mess {
+.chatting .sidebarchat .sidedoc .doctorschat .slide .doctorInfo .mess {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  gap: 2.5rem;
+  gap: 2rem;
   align-items: stretch;
 }
-.chatting .sidebarchat .sidebar .doctorschat .slide .onlineIndicator {
+.chatting .sidebarchat .sidedoc .doctorschat .slide .onlineIndicator {
   position: absolute;
   width: 0.625rem;
   height: 0.625rem;

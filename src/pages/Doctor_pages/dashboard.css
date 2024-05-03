@@ -7,10 +7,11 @@
 .sidebardoc .sidebardoc-header {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 0.5em;
   font-size: 1.8em;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
+  align-items: center;
 }
 .sidebardoc .sidebardoc-header h4 {
   font-size: 1.5em;
@@ -22,6 +23,10 @@
   gap: 0.2em;
   font-size: 1.8rem;
   font-family: "Arizonia", cursive;
+}
+.sidebardoc .sidebardoc-header p img{
+  width: 11vw;
+  border-radius: 10%;
 }
 .sidebardoc .sidebardoc-header span {
   font-size: 1.5rem;
@@ -35,7 +40,7 @@
   display: flex;
   align-items: center;
   gap: 1em;
-  padding: 0.8em;
+  padding: 0.1em;
   font-size: medium;
   text-decoration: none;
   color: #000000;

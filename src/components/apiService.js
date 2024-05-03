@@ -130,7 +130,6 @@ export const deleteDoctor = async (doctorId, accessToken) => {
     handleRequestError(error);
   }
 };
-
 // getDoctorsCount
 export const getDoctorsCount = async (accessToken) => {
   try {
@@ -140,7 +139,6 @@ export const getDoctorsCount = async (accessToken) => {
     handleRequestError(error);
   }
 };
-
 //getFirstEightDoctors
 export const getFirstEightDoctors = async (accessToken) => {
   try {
@@ -155,7 +153,6 @@ export const getFirstEightDoctors = async (accessToken) => {
     handleRequestError(error);
   }
 };
-
 //getAllUsers
 export const getAllUsers = async (accessToken,page) => {
   try {
@@ -170,7 +167,6 @@ export const getAllUsers = async (accessToken,page) => {
     handleRequestError(error);
   }
 };
-
 // countAllUsers
 export const countAllUsers = async (accessToken) => {
   try {
@@ -180,7 +176,6 @@ export const countAllUsers = async (accessToken) => {
     handleRequestError(error);
   }
 };
-
 //getFirstEightUsers
 export const getFirstEightUsers = async (accessToken) => {
   try {
@@ -226,7 +221,19 @@ export const logindoctor = async (userloginData, setAccessToken) => {
     handleRequestError(error);
   }
 };
-
+export const getDoctorProfile = async (accessToken) => {
+  try {
+    const userProfile = await sendRequest(
+      "GET",
+      "/auth/doctor/user-profile",
+      null,
+      accessToken
+    );
+    return userProfile;
+  } catch (error) {
+    handleRequestError(error);
+  }
+};
 
 
 
@@ -249,11 +256,11 @@ export const logindoctor = async (userloginData, setAccessToken) => {
 
 //chaaaaaaaaaaaaaaaaaaaaaaaaaatting
 // Function to get user contacts
-export const getUserContacts = async (accessToken) => {
+export const getDoctorContacts = async (accessToken) => {
   try {
     const response = await sendRequest(
       "GET",
-      "/user/chat/getUserContacts",
+      "/doctor/chat/getDoctorContacts",
       null,
       accessToken
     );
@@ -264,11 +271,11 @@ export const getUserContacts = async (accessToken) => {
 };
 
 // Function to authenticate user for chat
-export const userChatAuth = async (socketId, channelName, accessToken) => {
+export const DoctorChatAuth = async (socketId, channelName, accessToken) => {
   try {
     const response = await sendRequest(
       "POST",
-      "/user/chat/auth",
+      "/doctor/chat/auth",
       {
         socket_id: socketId,
         channel_name: channelName,
@@ -283,20 +290,19 @@ export const userChatAuth = async (socketId, channelName, accessToken) => {
 };
 
 // Function to send a message
-export const userSendMessage = async (
+export const DoctorSendMessage = async (
   accessToken,
   id,
   message,
-  temporaryMsgId
+  
 ) => {
   try {
     const response = await sendRequest(
       "POST",
-      "/user/chat/sendMessage",
+      "/doctor/chat/sendMessage",
       {
         id,
         message,
-        temporary_msg_id: temporaryMsgId,
       },
       accessToken
     );
@@ -309,11 +315,11 @@ export const userSendMessage = async (
 
 
 // Function to fetch user messages
-export const fetchUserMessages = async (accessToken, id) => {
+export const fetchDoctorMessages = async (accessToken, id) => {
   try {
     const response = await sendRequest(
       "POST",
-      "/user/chat/fetchMessages",
+      "/doctor/chat/fetchMessages",
       {
         id,
       },
@@ -326,11 +332,11 @@ export const fetchUserMessages = async (accessToken, id) => {
 };
 
 // Function to download a file
-export const userDownloadFile = async () => {
+export const DoctorDownloadFile = async () => {
   try {
     const response = await sendRequest(
       "GET",
-      "/user/chat/download/file-name-here"
+      "/doctor/chat/download/file-name-here"
     );
     return response;
   } catch (error) {
@@ -338,11 +344,11 @@ export const userDownloadFile = async () => {
   }
 };
 // Function to get user's shared photos
-export const getUserSharedPhotos = async (accessToken, userId) => {
+export const getDoctorSharedPhotos = async (accessToken, userId) => {
   try {
     const response = await sendRequest(
       "POST",
-      "/user/chat/shared",
+      "/doctor/chat/shared",
       {
         user_id: userId,
       },
@@ -355,11 +361,11 @@ export const getUserSharedPhotos = async (accessToken, userId) => {
 };
 
 // Function to delete a conversation
-export const userDeleteConversation = async (accessToken, id) => {
+export const DoctorDeleteConversation = async (accessToken, id) => {
   try {
     const response = await sendRequest(
       "POST",
-      "/user/chat/deleteConversation",
+      "/doctor/chat/deleteConversation",
       {
         id,
       },
@@ -372,11 +378,11 @@ export const userDeleteConversation = async (accessToken, id) => {
 };
 
 // Function to fetch doctor information by ID
-export const userFetchDoctorByID = async (accessToken, id) => {
+export const DoctorFetchDoctorByID = async (accessToken, id) => {
   try {
     const response = await sendRequest(
       "POST",
-      "/user/chat/idInfo",
+      "/doctor/chat/idInfo",
       {
         id,
       },
@@ -389,11 +395,11 @@ export const userFetchDoctorByID = async (accessToken, id) => {
 };
 
 // Function to mark a message as seen
-export const userMakeMessageSeen = async (accessToken, id) => {
+export const DoctorMakeMessageSeen = async (accessToken, id) => {
   try {
     const response = await sendRequest(
       "POST",
-      "/user/chat/makeSeen",
+      "/doctor/chat/makeSeen",
       {
         id,
       },

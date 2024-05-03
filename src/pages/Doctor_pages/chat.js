@@ -5,12 +5,12 @@ import "./chat.css";
 import Dashboarddoc from "./dashboard";
 
 import {
-  getUserContacts,
-  userChatAuth,
-  userMakeMessageSeen,
-  userSendMessage,
-  fetchUserMessages,
-  userFetchDoctorByID,
+  getDoctorContacts,
+  DoctorChatAuth,
+  DoctorMakeMessageSeen,
+  DoctorSendMessage,
+  fetchDoctorMessages,
+  DoctorFetchDoctorByID,
 } from "../../components/apiService.js";
 //import WebSocketClient from "websocket";
 
@@ -415,9 +415,9 @@ const Chat = () => {
   const [showDefaultConversation, setShowDefaultConversation] = useState(true);
   const [showSidebar, setShowSidebar] = useState(true);
   const [showChat, setShowChat] = useState(false);
-  const [doctorsData, setDoctorsData] = useState([]);
-  const [selectedDoctorInfo, setSelectedDoctorInfo] = useState(null);
-  const [currentDoctorMessages, setCurrentDoctorMessages] = useState([]);
+  const [usersData, setusersData] = useState([]);
+  const [selecteduserInfo, setselecteduserInfo] = useState(null);
+  const [currentuserMessages, setcurrentuserMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
   const [showPicker, setShowPicker] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -425,16 +425,17 @@ const Chat = () => {
   const baseURL = "http://127.0.0.1:8000/";
 
   // Function to fetch user contacts
-  const fetchUserContacts = async () => {
+  const fetchdoctorContacts = async () => {
     try {
       const accessToken = localStorage.getItem("accessToken");
-      const contacts = await getUserContacts(accessToken);
+      const contacts = await getDoctorContacts(accessToken);
       const contactsArray = contacts.contacts;
 
-      // Update doctorsData state
-      setDoctorsData(
+      // Update usersData state
+      setusersData(
         contactsArray.map((contact) => ({
           id: contact.user.id,
+
           isOnline: contact.user.active_status === 1,
           contactInfo: {
             ...contact,
@@ -445,6 +446,7 @@ const Chat = () => {
           },
         }))
       );
+      console.log("contacts",contacts)
     } catch (error) {
       console.error("An error occurred while fetching user contacts:", error);
     }
@@ -453,7 +455,7 @@ const Chat = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetchUserContacts();
+        await fetchdoctorContacts();
       } catch (error) {
         console.error("An error occurred while fetching user contacts:", error);
       }
@@ -471,22 +473,22 @@ const Chat = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleDoctorClick = async (doctor) => {
+  const handleuserClick = async (user) => {
     try {
       const accessToken = localStorage.getItem("accessToken");
 
       // Fetch doctor information
-      const doctorInfo = await userFetchDoctorByID(accessToken, doctor.id);
-      setSelectedDoctorInfo(doctorInfo.fetch);
-      setCurrentDoctorMessages(doctor.messages);
+      const doctorInfo = await DoctorFetchDoctorByID(accessToken, user.id);
+      setselecteduserInfo(doctorInfo.fetch);
+      setcurrentuserMessages(user.messages);
       setShowPicker(false);
 
       // Fetch user messages with the doctor
-      const userMessages = await fetchUserMessages(accessToken, doctor.id);
-      setCurrentDoctorMessages(userMessages.messages);
+      const docMessages = await fetchDoctorMessages(accessToken, user.id);
+      setcurrentuserMessages(docMessages.messages);
 
       // Mark messages as seen
-      await userMakeMessageSeen(accessToken, doctor.id);
+      await DoctorMakeMessageSeen(accessToken, user.id);
 
       // Update sidebar and chat visibility based on window width
       if (windowWidth <= 750) {
@@ -503,44 +505,29 @@ const Chat = () => {
     }
   };
 
+  // Send message
   const sendMessage = async (e) => {
     e.preventDefault();
-    if (currentMessage.trim() !== "" && selectedDoctorInfo) {
+    if (currentMessage.trim() !== "" && selecteduserInfo) {
       try {
         const accessToken = localStorage.getItem("accessToken");
-        if (!accessToken) {
-          console.error("Access token not found.");
-          return;
-        }
-
-        const response = await userSendMessage(
+        const response = await DoctorSendMessage(
           accessToken,
-          selectedDoctorInfo.id,
+          selecteduserInfo.id,
           currentMessage
         );
-
-        if (response && response.success) {
-          console.log("Message sent successfully:", response);
-
-          const storedMessages =
-            JSON.parse(localStorage.getItem("messages")) || {};
-          const doctorMessages = storedMessages[selectedDoctorInfo.id] || [];
-          doctorMessages.push({
-            body: currentMessage,
-            from_id: "user",
-            created_at: new Date().toISOString(),
-            seen: true,
-          });
-          storedMessages[selectedDoctorInfo.id] = doctorMessages;
-          localStorage.setItem("messages", JSON.stringify(storedMessages));
-
-          setCurrentMessage("");
-        } else {
-          console.error(
-            "Failed to send message:",
-            response && response.error ? response.error : "Unknown error"
-          );
-        }
+        const storedMessages =
+          JSON.parse(localStorage.getItem("messages")) || {};
+        const doctorMessages = storedMessages[selecteduserInfo.id] || [];
+        doctorMessages.push({
+          body: currentMessage,
+          from_id: "doctor",
+          created_at: new Date().toISOString(),
+          seen: true,
+        });
+        storedMessages[selecteduserInfo.id] = doctorMessages;
+        localStorage.setItem("messages", JSON.stringify(storedMessages));
+        setCurrentMessage("");
       } catch (error) {
         console.error("An error occurred while sending the message:", error);
       }
@@ -549,13 +536,13 @@ const Chat = () => {
 
   useEffect(() => {
     const storedMessages = JSON.parse(localStorage.getItem("messages")) || {};
-    const doctorMessages = storedMessages[selectedDoctorInfo?.id] || [];
-    setCurrentDoctorMessages(doctorMessages);
-  }, [selectedDoctorInfo]);
+    const doctorMessages = storedMessages[selecteduserInfo?.id] || [];
+    setcurrentuserMessages(doctorMessages);
+  }, [selecteduserInfo]);
 
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
-    if (window.innerWidth >= 750 && !selectedDoctorInfo) {
+    if (window.innerWidth >= 750 && !selecteduserInfo) {
       setShowSidebar(true);
       setShowDefaultConversation(true);
     }
@@ -564,12 +551,12 @@ const Chat = () => {
   const handlearrowClick = async () => {
     try {
       const accessToken = localStorage.getItem("accessToken");
-      if (selectedDoctorInfo) {
+      if (selecteduserInfo) {
         // Mark messages as seen
-        await userMakeMessageSeen(accessToken, selectedDoctorInfo.id);
+        await DoctorMakeMessageSeen(accessToken, selecteduserInfo.id);
       }
 
-      setSelectedDoctorInfo(null);
+      setselecteduserInfo(null);
       setShowChat(false);
       setShowPicker(false);
     } catch (error) {
@@ -582,29 +569,29 @@ const Chat = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [selectedDoctorInfo]);
+  }, [selecteduserInfo]);
 
   useEffect(() => {
-    if (!selectedDoctorInfo && !showChat && windowWidth >= 750) {
+    if (!selecteduserInfo && !showChat && windowWidth >= 750) {
       setShowDefaultConversation(true);
     } else {
       setShowDefaultConversation(false);
     }
-  }, [selectedDoctorInfo, showChat, windowWidth]);
+  }, [selecteduserInfo, showChat, windowWidth]);
 
   useEffect(() => {
-    if (!selectedDoctorInfo && windowWidth >= 750) {
+    if (!selecteduserInfo && windowWidth >= 750) {
       setShowSidebar(true);
     }
-  }, [selectedDoctorInfo, windowWidth]);
+  }, [selecteduserInfo, windowWidth]);
 
   useEffect(() => {
-    if (selectedDoctorInfo && windowWidth < 750) {
+    if (selecteduserInfo && windowWidth < 750) {
       setShowSidebar(false);
     } else {
       setShowSidebar(true);
     }
-  }, [selectedDoctorInfo, windowWidth]);
+  }, [selecteduserInfo, windowWidth]);
   const formatTime = (createdAt) => {
     const date = new Date(createdAt);
     const hours = date.getHours();
@@ -612,7 +599,7 @@ const Chat = () => {
     const minutes = ("0" + date.getMinutes()).slice(-2);
     const period = hours >= 12 ? "PM" : "AM";
     return `${displayHours}:${minutes} ${period}`;
-};
+  };
 
   return (
     <>
@@ -626,18 +613,18 @@ const Chat = () => {
         />{" "}
       </Helmet>
       <div className="chatt">
-      <Dashboarddoc />
+        <Dashboarddoc />
         <div className="chatting">
           <div className={showSidebar ? "sidebarchat" : "sidebarchat-hidden"}>
             <h3 style={{ display: showSidebar ? "block" : "none" }}>
               Messages
             </h3>
-            <div className="sidebar">
-              {doctorsData.map((doctor) => (
+            <div className="sidedoc">
+              {usersData.map((doctor) => (
                 <div
                   key={doctor.id}
                   className="doctorschat"
-                  onClick={() => handleDoctorClick(doctor)}
+                  onClick={() => handleuserClick(doctor)}
                 >
                   <div className="slide">
                     <div className="doctorAvatarContainer">
@@ -655,12 +642,10 @@ const Chat = () => {
                     <div className="doctorInfo">
                       <div className="doctortext">
                         <div className="doctorName">
-                          {doctor.contactInfo.user.first_name}{" "}
+                          {doctor.contactInfo.user.name}{" "}
                           {doctor.contactInfo.user.last_name}
                         </div>
-                        <div className="doctorSpeciality">
-                          {doctor.contactInfo.user.specialization}
-                        </div>
+
                         <div
                           className="lastMessage"
                           style={{
@@ -692,34 +677,34 @@ const Chat = () => {
               ))}
             </div>
           </div>
-          {selectedDoctorInfo && showChat && (
+          {selecteduserInfo && showChat && (
             <div className="chatm">
               <div className="doctorinfor">
                 <div className="convback" onClick={handlearrowClick}>
                   <i className="fa-solid fa-arrow-left"></i>
                 </div>
-                {selectedDoctorInfo && (
+                {selecteduserInfo && (
                   <div className="contactimgchat">
                     <div className="imgd">
                       <img
-                        src={baseURL + selectedDoctorInfo.avatar}
+                        src={baseURL + selecteduserInfo.avatar}
                         alt="contact-img"
                         className="zoomedImagechat"
                       />
                     </div>
-                    {selectedDoctorInfo.isOnline && (
+                    {selecteduserInfo.isOnline && (
                       <div className="onlineIndicator"></div>
                     )}
                   </div>
                 )}
-                {selectedDoctorInfo && (
+                {selecteduserInfo && (
                   <div className="infor">
                     <h3>
-                      {selectedDoctorInfo.first_name}{" "}
-                      {selectedDoctorInfo.last_name}
+                      {selecteduserInfo.name}{" "}
+                      {selecteduserInfo.last_name}
                     </h3>
                     <p>
-                      {selectedDoctorInfo.active_status === 1
+                      {selecteduserInfo.active_status === 1
                         ? "Online"
                         : "Offline"}
                     </p>
@@ -727,24 +712,24 @@ const Chat = () => {
                 )}
               </div>
 
-              {selectedDoctorInfo && showChat && (
+              {selecteduserInfo && showChat && (
                 <div
                   className={`chat-container ${
-                    selectedDoctorInfo.specialization
-                      ? selectedDoctorInfo.specialization.toLowerCase() +
+                    selecteduserInfo.specialization
+                      ? selecteduserInfo.specialization.toLowerCase() +
                         "-chat"
                       : ""
                   }`}
                   onClick={() => setShowPicker(false)}
                 >
-                  {currentDoctorMessages &&
-                    currentDoctorMessages.length > 0 && (
+                  {currentuserMessages &&
+                    currentuserMessages.length > 0 && (
                       <div className="chat-messages">
-                        {currentDoctorMessages.map((message) => (
+                        {currentuserMessages.map((message) => (
                           <div
                             key={message.id}
                             className={`message ${
-                              message.from_id === selectedDoctorInfo.id
+                              message.from_id === selecteduserInfo.id
                                 ? "doctor"
                                 : "user"
                             }`}
@@ -752,7 +737,7 @@ const Chat = () => {
                             <span>{message.body}</span>
                             <span
                               className={`message-time ${
-                                message.from_id === selectedDoctorInfo.id
+                                message.from_id === selecteduserInfo.id
                                   ? "doctor-time"
                                   : "user-time"
                               }`}
@@ -763,7 +748,7 @@ const Chat = () => {
                                 width="16"
                                 height="16"
                                 fill={message.seen ? "#00bbff" : "currentColor"}
-                                class="bi bi-check-all"
+                                className="bi bi-check-all"
                                 viewBox="0 0 16 16"
                               >
                                 <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486z" />

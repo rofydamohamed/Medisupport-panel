@@ -23,6 +23,7 @@ const Login_as_admin = () => {
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
   const { login } = useAuth();
   const [accessToken, setAccessToken] = useState("");
+  const [userType, setUserType] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -37,6 +38,7 @@ const Login_as_admin = () => {
       saveTokenToLocalStorage(accessToken);
       setAccessToken(accessToken);
       console.log("access_token:", accessToken);
+      setUserType("admin"); 
       navigate("/Loading");
       login();
       event.target.reset();

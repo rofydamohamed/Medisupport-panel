@@ -1,10 +1,38 @@
-import { NavLink} from "react-router-dom";
-
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import { getUserProfile } from "../components/apiService";
 import "./Dashboard.css";
 import { Helmet } from "react-helmet-async";
-
+//import { eachDayOfInterval, format } from "date-fns";
 
 const Dashboard = () => {
+  const [userProfile, setuserProfile] = useState([]);
+
+  useEffect(() => {
+    const fetchuserProfile = async () => {
+      try {
+        const accessToken = localStorage.getItem("accessToken");
+        const UserProfile = await getUserProfile(accessToken);
+
+        const formattedUserProfile = UserProfile.data
+          ? [
+              {
+                fname: UserProfile.data.first_name,
+                lname: UserProfile.data.last_name,
+              },
+            ]
+          : [];
+
+        console.log("formattedUserProfile:", formattedUserProfile);
+        setuserProfile(formattedUserProfile);
+      } catch (error) {
+        console.error("Error fetching UserProfile:", error);
+      }
+    };
+
+    fetchuserProfile();
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -34,13 +62,15 @@ const Dashboard = () => {
               support
             </h4>
           </div>
-          <p>
-            Nada Yakout <span>Admin</span>
-          </p>
+          {userProfile.map((profile, index) => (
+            <p key={index}>
+              {profile.fname} {profile.lname} <span>Admin</span>
+            </p>
+          ))}
         </div>
         <ul className="nav">
           <li className="filll">
-            <NavLink to="/Dash" >
+            <NavLink to="/Dash">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="54"
@@ -122,8 +152,8 @@ const Dashboard = () => {
               Dashboard
             </NavLink>
           </li>
-          <li>
-            <NavLink to="/Contact"  className="fill">
+          <li className="fill">
+            <NavLink to="/Contact" >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="50"
@@ -140,7 +170,7 @@ const Dashboard = () => {
             </NavLink>
           </li>
           <li className="filll">
-            <NavLink to="/Doctors" >
+            <NavLink to="/Doctors">
               {" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -151,15 +181,15 @@ const Dashboard = () => {
               >
                 <path
                   d="M35.0296 18.984C35.0296 20.1344 33.8539 21.0671 32.4066 21.0671C30.9594 21.0671 29.7837 20.1344 29.7837 18.984C29.7837 17.8346 30.9594 16.9009 32.4066 16.9009C33.8539 16.9009 35.0296 17.8346 35.0296 18.984Z"
-                  fill="#1F1F1F"
+                  fill="#ddd"
                 />
                 <path
                   d="M24.5379 18.984C24.5379 20.1344 23.3622 21.0671 21.9149 21.0671C20.4677 21.0671 19.292 20.1344 19.292 18.984C19.292 17.8346 20.4677 16.9009 21.9149 16.9009C23.3622 16.9009 24.5379 17.8346 24.5379 18.984Z"
-                  fill="#1F1F1F"
+                  fill="#ddd"
                 />
                 <path
                   d="M27.1604 29.4021C25.6499 29.4021 24.1392 29.1041 22.6395 28.5086C21.9914 28.2512 21.7288 27.6257 22.0529 27.111C22.3763 26.5969 23.1627 26.3878 23.8126 26.6452C26.0655 27.5402 28.2555 27.5402 30.5084 26.6452C31.157 26.3878 31.944 26.5969 32.2681 27.111C32.592 27.6257 32.3295 28.2512 31.6815 28.5086C30.1817 29.1041 28.6711 29.4021 27.1604 29.4021Z"
-                  fill="#1F1F1F"
+                  fill="#ddd"
                 />
                 <path
                   d="M41.9525 18.8756C42.0043 19.3772 42.0309 19.8862 42.0309 20.4014C42.0309 28.5544 35.3732 35.1637 27.1606 35.1637C18.948 35.1637 12.2903 28.5544 12.2903 20.4014L12.1274 18.8833"
@@ -323,7 +353,7 @@ const Dashboard = () => {
               Register New Doctor
             </NavLink>
           </li>
-        </ul>  
+        </ul>
       </div>
     </>
   );

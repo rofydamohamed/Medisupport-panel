@@ -1,10 +1,10 @@
-.sidebar {
+.sidebardoc {
   min-width: 320px;
   height: 100%;
   color: #000000;
   border-right: 0.02em solid var(--Red);
 }
-.sidebar .sidebar-header {
+.sidebardoc .sidebardoc-header {
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -12,26 +12,26 @@
   padding: 2rem;
   text-align: center;
 }
-.sidebar .sidebar-header h4 {
+.sidebardoc .sidebardoc-header h4 {
   font-size: 1.5em;
   font-family: "Arizonia", cursive;
 }
-.sidebar .sidebar-header p {
+.sidebardoc .sidebardoc-header p {
   display: flex;
   flex-direction: column;
   gap: 0.2em;
   font-size: 1.8rem;
   font-family: "Arizonia", cursive;
 }
-.sidebar .sidebar-header span {
+.sidebardoc .sidebardoc-header span {
   font-size: 1.5rem;
   font-family: "Arizonia", cursive;
 }
-.sidebar .nav {
+.sidebardoc .nav {
   list-style-type: none;
   padding: 0;
 }
-.sidebar .nav li a {
+.sidebardoc .nav li a {
   display: flex;
   align-items: center;
   gap: 1em;
@@ -41,28 +41,28 @@
   color: #000000;
   border: 0.01em solid var(--Red);
 }
-.sidebar .nav  svg {
+.sidebardoc .nav  svg {
   width: 40px;
   stroke: black;
 }
-.sidebar .nav .fill  svg{
+.sidebardoc .nav .fill  svg{
   width: 40px;
   fill: black;
 }
-.sidebar .nav li a:hover {
+.sidebardoc .nav li a:hover {
   background-color: #eae8e8;
   border-radius: 0.5em 0.5em 0em 0em;
 }
-.sidebar .nav li a.active {
+.sidebardoc .nav li a.active {
   background-color: var(--Red);
   color: #fff;
   border-radius: 0.5em 0.5em 0em 0em;
 }
-.sidebar .nav  li a.active   svg{
+.sidebardoc .nav  li a.active   svg{
   stroke: rgb(255, 255, 255);
   fill: rgb(255, 255, 255) ;
 }
-.sidebar .nav  .filll  a.active  svg{
+.sidebardoc .nav  .filll  a.active  svg{
   stroke: rgb(255, 255, 255);
   fill: none;
 }

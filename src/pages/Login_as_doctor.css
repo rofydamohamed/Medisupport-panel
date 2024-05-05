@@ -1,0 +1,339 @@
+.logdoc {
+  position: relative;
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  /* height: 100vh; */
+}
+
+.logdoc .flex2 {
+  width: 100%;
+}
+
+.logdoc .flex2 img {
+  width: 100%;
+}
+
+.logdoc .forml {
+  display: flex;
+  flex-direction: column;
+}
+
+.logdoc .flex1 {
+  display: flex;
+  padding: 0% 5% 0% 5%;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3em;
+  width: 100%;
+}
+
+.logdoc h2 {
+  color: var(--Red);
+  /* Heading/2 */
+  font-family: "Roboto", sans-serif;
+  font-size: 2.625rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 110%;
+  /* 2.8875rem */
+}
+
+.logdoc .lbl,
+.lbl1,
+.lbl2 {
+  width: 100%;
+}
+
+.logdoc .lbl {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  gap: 3rem;
+}
+
+.logdoc .lbl1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75em;
+  align-self: stretch;
+}
+
+.logdoc .lbl2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75em;
+  align-self: stretch;
+  width: 100%;
+}
+
+.logdoc label {
+  color: var(--graycolor);
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  max-width: 100%;
+  height: auto;
+}
+
+.logdoc .inp {
+  width: 100%;
+  display: flex;
+  height: 3rem;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 0.625rem;
+  border: 0.01em solid var(--Red);
+  padding: 0.5em;
+}
+
+.logdoc .disc {
+  color: var(--darkgraycolor);
+  font-family: Roboto;
+  font-size: 0.8em;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+}
+
+.logdoc .forget {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9em;
+  width: 100%;
+}
+
+.logdoc .checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logdoc .checkbox-container label {
+  color: var(--Red);
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 140%;
+}
+
+.logdoc #custom-checkbox {
+  display: none;
+}
+
+.logdoc .custom-checkbox-label {
+  display: flex;
+  align-items: center;
+  width: 1em;
+  height: 1em;
+  border: 0.02em solid var(--Red);
+  cursor: pointer;
+  position: relative;
+}
+
+.logdoc #custom-checkbox:checked + .custom-checkbox-label::after {
+  content: "";
+  position: absolute;
+  left: 0.3em;
+  top: 0.04em;
+  width: 0.18em;
+  height: 0.5em;
+  border: solid var(--secondaryColor);
+  border-width: 0 0.2em 0.2em 0;
+  transform: rotate(45deg);
+}
+
+.logdoc #for {
+  color: var(--Red);
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+}
+
+#for:hover {
+  opacity: 0.7;
+}
+
+.logdoc .flex1 .btn {
+  display: inline-block;
+  background-color: var(--Red);
+  color: var(--whiteColor);
+  text-align: center;
+  padding: 0.3em;
+  border-radius: 0.4em;
+  border: 2px solid var(--Red);
+  font-family: "Roboto", sans-serif;
+  font-size: 1.7em;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  width: 100%;
+}
+
+.logdoc .flex1 .btn:hover {
+  opacity: 0.7;
+}
+
+.logdoc .btn-logdoc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1em;
+}
+
+.logdoc .blogdoc {
+  justify-content: center;
+  display: flex;
+  padding: 1.4vh 3.1vw;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 0.7em;
+  background-color: var(--whiteColor);
+  border: 2px solid var(--Red);
+}
+
+.logdoc .text {
+  display: flex;
+  padding: 0vh 2vh;
+  justify-content: center;
+  align-items: center;
+  color: var(--graycolor);
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: 0.5px;
+}
+
+.logdoc .text:hover {
+  opacity: 0.7;
+}
+
+.logdoc hr {
+  opacity: 0.3;
+}
+
+.logdoc .sign p {
+  color: #1e1e1e;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+}
+
+.logdoc #nav {
+  color: var(--Red);
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+}
+
+.logdoc #nav:hover {
+  opacity: 0.7;
+}
+
+.logdoc input::placeholder {
+  font-size: 1rem;
+  padding: 0.5em;
+}
+
+/* PasswordInput.css */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+.password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.toggle-password-visibility {
+  position: absolute;
+  right: 1em;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  fill: #353535;
+}
+
+.toggle-password-visibility.active {
+  fill: var(--Red);
+}
+
+/* after-click-btn */
+.logdoc .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(18, 22, 25, 0.65);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.logdoc .overlay .seedet {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  max-height: 3rem;
+  padding: 1rem 4rem;
+  align-items: center;
+  color: var(--whiteColor);
+  border-radius: 0.625rem;
+  background: var(--Red);
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: 0.03125rem;
+}
+.logdoc .overlay .seedet:hover {
+  opacity: 0.7;
+}
+
+/* responsive */
+@media screen and (max-width: 1090px) {
+  .logdoc {
+    flex-direction: column;
+  }
+
+  .logdoc .flex2,
+  .logdoc .flex1 {
+    width: 100%;
+  }
+
+  .logdoc .flex2 {
+    order: -1;
+  }
+
+  .logdoc .btn-logdoc {
+    flex-direction: column;
+  }
+
+  .logdoc .flex1 {
+    padding-top: 0;
+  }
+}

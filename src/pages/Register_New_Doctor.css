@@ -3,8 +3,8 @@
   flex-direction: row;
 }
 .page .register{
-  /* width:  calc(100% - 320px); */
-  /* border-left: 0.01em solid var(--Red); */
+  width:  calc(100% - 320px);
+  border-left: 0.01em solid var(--Red);
 }
 .register h1 {
   color: #be0202;

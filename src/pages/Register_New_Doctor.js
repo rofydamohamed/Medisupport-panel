@@ -1,10 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Dashboard from "../components/Dashboard";
 import "./Register_New_Doctor.css";
 import { NavLink } from "react-router-dom";
+import { RegisterNewDoctor, saveTokenToLocalStorage } from "../components/apiService";
 
-const RegisterNewDoctor = () => {
+
+
+
+const Register_New_Doctor = () => {
+
+  const [accessToken, setAccessToken] = useState("");
+
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const formData = new FormData(event.target);
+      const doctorData = {
+        firs_name: formData.get("firs_name"),
+        last_name: formData.get("last_name"),
+        email: formData.get("email"),
+        password: formData.get("password"),
+        password_confirmation: formData.get("password"),
+        specialization: formData.get("specialization"),
+        bio: formData.get("bio"),
+        phone: formData.get("phone"),
+        price: formData.get("price"),
+        avatar: formData.get("avatar"),
+        clinic_location: formData.get("clinic_location"),
+        admin_id:formData.get("admin_id"),
+      };
+      const accessToken = await RegisterNewDoctor(doctorData, setAccessToken);
+      saveTokenToLocalStorage(accessToken);
+      setAccessToken(accessToken);
+      console.log("access_token:", accessToken);
+      // Send userData directly without JSON.stringify
+      // Reset form fields after successful submission
+      event.target.reset();
+    } catch (error) {
+      console.error(error);
+      alert("Failed to register doctor. Please try again.");
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -18,7 +58,7 @@ const RegisterNewDoctor = () => {
             <p>pages/Register</p>
           </div>
           <h1>Register</h1>
-          <div className="form">
+          <form onSubmit={handleSubmit} className="form">
             <div className="field_group">
               <div className="text_field">
                 <div className="label">FName</div>
@@ -27,11 +67,12 @@ const RegisterNewDoctor = () => {
                     className="inp"
                     placeholder="FName"
                     type="text"
-                    name=""
-                    id=""
+                    name="first_name"
+                    id="first_name"
                   />
                 </div>
               </div>
+
               <div className="text_field">
                 <div className="label">LName</div>
                 <div className="field">
@@ -39,12 +80,25 @@ const RegisterNewDoctor = () => {
                     className="inp"
                     placeholder="LName"
                     type="text"
-                    name=""
-                    id=""
+                    name="last_name"
+                    id="last_name"
                   />
                 </div>
               </div>
             </div>
+            <div className="text_field">
+                <div className="label">admin_id</div>
+                <div className="field">
+                  <input
+                    className="inp"
+                    placeholder="FName"
+                    type="text"
+                    name="admin_id"
+                    id="admin_id"
+                  />
+                </div>
+              </div>
+
             <div className="text_field">
               <div className="label">Specialization</div>
               <div className="field">
@@ -52,8 +106,8 @@ const RegisterNewDoctor = () => {
                   className="inp"
                   placeholder="Specialization"
                   type="text"
-                  name=""
-                  id=""
+                  name="specialization"
+                  id="specialization"
                 />
               </div>
             </div>
@@ -64,8 +118,8 @@ const RegisterNewDoctor = () => {
                   className="inp"
                   placeholder="Email"
                   type="text"
-                  name=""
-                  id=""
+                  name="email"
+                  id="email"
                 />
               </div>
             </div>
@@ -76,8 +130,8 @@ const RegisterNewDoctor = () => {
                   className="inp"
                   placeholder="Phone"
                   type="text"
-                  name=""
-                  id=""
+                  name="phone"
+                  id="phone"
                 />
               </div>
             </div>
@@ -88,8 +142,8 @@ const RegisterNewDoctor = () => {
                   className="inp"
                   placeholder="Clinic Location"
                   type="text"
-                  name=""
-                  id=""
+                  name="clinic_location"
+                  id="clinic_location"
                 />
               </div>
             </div>
@@ -100,8 +154,8 @@ const RegisterNewDoctor = () => {
                   className="inp"
                   placeholder="Bio"
                   type="text"
-                  name=""
-                  id=""
+                  name="bio"
+                  id="bio"
                 />
               </div>
             </div>
@@ -113,8 +167,8 @@ const RegisterNewDoctor = () => {
                     className="inp"
                     placeholder="Price"
                     type="text"
-                    name=""
-                    id=""
+                    name="price"
+                    id="price"
                   />
                 </div>
               </div>
@@ -125,8 +179,8 @@ const RegisterNewDoctor = () => {
                     className="inp"
                     placeholder="Photo"
                     type="text"
-                    name=""
-                    id=""
+                    name="avatar"
+                    id="avatar"
                   />
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -171,8 +225,8 @@ const RegisterNewDoctor = () => {
                   className="inp"
                   placeholder="Password"
                   type="password"
-                  name=""
-                  id=""
+                  name="password"
+                  id="password"
                 />
               </div>
             </div>
@@ -188,14 +242,14 @@ const RegisterNewDoctor = () => {
                 />
               </div>
             </div>
-            <button className="reg">
+            <button type="submit" className="reg">
               <NavLink>Register</NavLink>
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </>
   );
 };
 
-export default RegisterNewDoctor;
+export default Register_New_Doctor;

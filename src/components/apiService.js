@@ -28,6 +28,9 @@ export const sendRequest = async (method, url, data, accessToken) => {
     handleRequestError(error); 
   }
 };
+
+
+
 export const loginadmin = async (userloginData, setAccessToken) => {
   try {
     const response = await axios.post(
@@ -163,3 +166,30 @@ export const getFirstEightUsers = async (accessToken) => {
   }
 };
 
+
+export const RegisterNewDoctor = async (doctorData) => {
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/auth/doctor/register`,
+      doctorData
+    );
+    const accessToken = response.data.access_token
+    return accessToken;
+  } catch (error) {
+    console.error("Error registering to:", error);
+    handleRequestError(error);
+  }
+};
+
+// const formData = new FormData();
+// formData.append('username', 'Hossam');
+// formData.append('password', '12345');
+// formData.append('email', 'hossam@gmail.com');
+
+// axios({
+//   method: 'post',
+//   url: '/auth/doctor/register',
+//   data: {
+
+//   }
+// });

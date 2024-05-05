@@ -30,7 +30,7 @@ const Register_New_Doctor = () => {
         price: formData.get("price"),
         avatar: formData.get("avatar"),
         clinic_location: formData.get("clinic_location"),
-        admin_id:formData.get("admin_id"),
+        working_hours:formData.get("working_hours"),
       };
       const accessToken = await RegisterNewDoctor(doctorData, setAccessToken);
       saveTokenToLocalStorage(accessToken);
@@ -86,29 +86,31 @@ const Register_New_Doctor = () => {
                 </div>
               </div>
             </div>
-            <div className="text_field">
-                <div className="label">admin_id</div>
+            <div className="field_group">
+              <div className="text_field">
+                <div className="label">Specialization</div>
                 <div className="field">
                   <input
                     className="inp"
-                    placeholder="FName"
+                    placeholder="Specialization"
                     type="text"
-                    name="admin_id"
-                    id="admin_id"
+                    name="specialization"
+                    id="specialization"
                   />
                 </div>
               </div>
 
-            <div className="text_field">
-              <div className="label">Specialization</div>
-              <div className="field">
-                <input
-                  className="inp"
-                  placeholder="Specialization"
-                  type="text"
-                  name="specialization"
-                  id="specialization"
-                />
+              <div className="text_field">
+                <div className="label">Working Hours</div>
+                <div className="field">
+                  <input
+                    className="inp"
+                    placeholder="Working Hours"
+                    type="text"
+                    name="working_hours"
+                    id="working_hours"
+                  />
+                </div>
               </div>
             </div>
             <div className="text_field">

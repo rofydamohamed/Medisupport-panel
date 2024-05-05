@@ -200,422 +200,6 @@ export const getFirstEightUsers = async (accessToken) => {
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-//Doctor
-export const logindoctor = async (userloginData, setAccessToken) => {
-  try {
-    const response = await axios.post(
-      `${BASE_URL}/auth/doctor/login`,
-      userloginData
-    );
-    console.log("Response data:", response.data);
-    const accessToken = response.data.access_token;
-    console.log("Access Token:", accessToken);
-    setAccessToken(accessToken);
-    return accessToken;
-  } catch (error) {
-    console.error("Error logging in:", error);
-    handleRequestError(error);
-  }
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//chaaaaaaaaaaaaaaaaaaaaaaaaaatting
-// Function to get user contacts
-export const getUserContacts = async (accessToken) => {
-  try {
-    const response = await sendRequest(
-      "GET",
-      "/user/chat/getUserContacts",
-      null,
-      accessToken
-    );
-    return response;
-  } catch (error) {
-    handleRequestError(error);
-  }
-};
-
-// Function to authenticate user for chat
-export const userChatAuth = async (socketId, channelName, accessToken) => {
-  try {
-    const response = await sendRequest(
-      "POST",
-      "/user/chat/auth",
-      {
-        socket_id: socketId,
-        channel_name: channelName,
-      },
-      accessToken
-    );
-
-    return response;
-  } catch (error) {
-    handleRequestError(error);
-  }
-};
-
-// Function to send a message
-export const userSendMessage = async (
-  accessToken,
-  id,
-  message,
-  temporaryMsgId
-) => {
-  try {
-    const response = await sendRequest(
-      "POST",
-      "/user/chat/sendMessage",
-      {
-        id,
-        message,
-        temporary_msg_id: temporaryMsgId,
-      },
-      accessToken
-    );
-    return response;
-  } catch (error) {
-    handleRequestError(error);
-    throw error;
-  }
-};
-
-
-// Function to fetch user messages
-export const fetchUserMessages = async (accessToken, id) => {
-  try {
-    const response = await sendRequest(
-      "POST",
-      "/user/chat/fetchMessages",
-      {
-        id,
-      },
-      accessToken
-    );
-    return response;
-  } catch (error) {
-    handleRequestError(error);
-  }
-};
-
-// Function to download a file
-export const userDownloadFile = async () => {
-  try {
-    const response = await sendRequest(
-      "GET",
-      "/user/chat/download/file-name-here"
-    );
-    return response;
-  } catch (error) {
-    handleRequestError(error);
-  }
-};
-// Function to get user's shared photos
-export const getUserSharedPhotos = async (accessToken, userId) => {
-  try {
-    const response = await sendRequest(
-      "POST",
-      "/user/chat/shared",
-      {
-        user_id: userId,
-      },
-      accessToken
-    );
-    return response;
-  } catch (error) {
-    handleRequestError(error);
-  }
-};
-
-// Function to delete a conversation
-export const userDeleteConversation = async (accessToken, id) => {
-  try {
-    const response = await sendRequest(
-      "POST",
-      "/user/chat/deleteConversation",
-      {
-        id,
-      },
-      accessToken
-    );
-    return response;
-  } catch (error) {
-    handleRequestError(error);
-  }
-};
-
-// Function to fetch doctor information by ID
-export const userFetchDoctorByID = async (accessToken, id) => {
-  try {
-    const response = await sendRequest(
-      "POST",
-      "/user/chat/idInfo",
-      {
-        id,
-      },
-      accessToken
-    );
-    return response;
-  } catch (error) {
-    handleRequestError(error);
-  }
-};
-
-// Function to mark a message as seen
-export const userMakeMessageSeen = async (accessToken, id) => {
-  try {
-    const response = await sendRequest(
-      "POST",
-      "/user/chat/makeSeen",
-      {
-        id,
-      },
-      accessToken
-    );
-    return response;
-  } catch (error) {
-    handleRequestError(error);
-  }
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Doctor
-export const logindoctor = async (userloginData, setAccessToken) => {
-  try {
-    const response = await axios.post(
-      `${BASE_URL}/auth/doctor/login`,
-      userloginData
-    );
-    console.log("Response data:", response.data);
-    const accessToken = response.data.access_token;
-    console.log("Access Token:", accessToken);
-    setAccessToken(accessToken);
-    return accessToken;
-  } catch (error) {
-    console.error("Error logging in:", error);
-    handleRequestError(error);
-  }
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//chaaaaaaaaaaaaaaaaaaaaaaaaaatting
-// Function to get user contacts
-export const getUserContacts = async (accessToken) => {
-  try {
-    const response = await sendRequest(
-      "GET",
-      "/user/chat/getUserContacts",
-      null,
-      accessToken
-    );
-    return response;
-  } catch (error) {
-    handleRequestError(error);
-  }
-};
-
-// Function to authenticate user for chat
-export const userChatAuth = async (socketId, channelName, accessToken) => {
-  try {
-    const response = await sendRequest(
-      "POST",
-      "/user/chat/auth",
-      {
-        socket_id: socketId,
-        channel_name: channelName,
-      },
-      accessToken
-    );
-
-    return response;
-  } catch (error) {
-    handleRequestError(error);
-  }
-};
-
-// Function to send a message
-export const userSendMessage = async (
-  accessToken,
-  id,
-  message,
-  temporaryMsgId
-) => {
-  try {
-    const response = await sendRequest(
-      "POST",
-      "/user/chat/sendMessage",
-      {
-        id,
-        message,
-        temporary_msg_id: temporaryMsgId,
-      },
-      accessToken
-    );
-    return response;
-  } catch (error) {
-    handleRequestError(error);
-    throw error;
-  }
-};
-
-
-// Function to fetch user messages
-export const fetchUserMessages = async (accessToken, id) => {
-  try {
-    const response = await sendRequest(
-      "POST",
-      "/user/chat/fetchMessages",
-      {
-        id,
-      },
-      accessToken
-    );
-    return response;
-  } catch (error) {
-    handleRequestError(error);
-  }
-};
-
-// Function to download a file
-export const userDownloadFile = async () => {
-  try {
-    const response = await sendRequest(
-      "GET",
-      "/user/chat/download/file-name-here"
-    );
-    return response;
-  } catch (error) {
-    handleRequestError(error);
-  }
-};
-// Function to get user's shared photos
-export const getUserSharedPhotos = async (accessToken, userId) => {
-  try {
-    const response = await sendRequest(
-      "POST",
-      "/user/chat/shared",
-      {
-        user_id: userId,
-      },
-      accessToken
-    );
-    return response;
-  } catch (error) {
-    handleRequestError(error);
-  }
-};
-
-// Function to delete a conversation
-export const userDeleteConversation = async (accessToken, id) => {
-  try {
-    const response = await sendRequest(
-      "POST",
-      "/user/chat/deleteConversation",
-      {
-        id,
-      },
-      accessToken
-    );
-    return response;
-  } catch (error) {
-    handleRequestError(error);
-  }
-};
-
-// Function to fetch doctor information by ID
-export const userFetchDoctorByID = async (accessToken, id) => {
-  try {
-    const response = await sendRequest(
-      "POST",
-      "/user/chat/idInfo",
-      {
-        id,
-      },
-      accessToken
-    );
-    return response;
-  } catch (error) {
-    handleRequestError(error);
-  }
-};
-
-// Function to mark a message as seen
-export const userMakeMessageSeen = async (accessToken, id) => {
-  try {
-    const response = await sendRequest(
-      "POST",
-      "/user/chat/makeSeen",
-      {
-        id,
-      },
-      accessToken
-    );
-    return response;
-  } catch (error) {
-    handleRequestError(error);
-  }
-};
-
 export const RegisterNewDoctor = async (doctorData) => {
   try {
     const response = await axios.post(
@@ -626,19 +210,199 @@ export const RegisterNewDoctor = async (doctorData) => {
     return accessToken;
   } catch (error) {
     console.error("Error registering to:", error);
+  };
+}
+
+
+
+
+
+
+
+
+
+
+//Doctor
+export const logindoctor = async (userloginData, setAccessToken) => {
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/auth/doctor/login`,
+      userloginData
+    );
+    console.log("Response data:", response.data);
+    const accessToken = response.data.access_token;
+    console.log("Access Token:", accessToken);
+    setAccessToken(accessToken);
+    return accessToken;
+  } catch (error) {
+    console.error("Error logging in:", error);
     handleRequestError(error);
   }
 };
 
-// const formData = new FormData();
-// formData.append('username', 'Hossam');
-// formData.append('password', '12345');
-// formData.append('email', 'hossam@gmail.com');
 
-// axios({
-//   method: 'post',
-//   url: '/auth/doctor/register',
-//   data: {
 
-//   }
-// });
+
+
+
+
+
+
+
+//chaaaaaaaaaaaaaaaaaaaaaaaaaatting
+// Function to get user contacts
+export const getUserContacts = async (accessToken) => {
+  try {
+    const response = await sendRequest(
+      "GET",
+      "/user/chat/getUserContacts",
+      null,
+      accessToken
+    );
+    return response;
+  } catch (error) {
+    handleRequestError(error);
+  }
+};
+
+// Function to authenticate user for chat
+export const userChatAuth = async (socketId, channelName, accessToken) => {
+  try {
+    const response = await sendRequest(
+      "POST",
+      "/user/chat/auth",
+      {
+        socket_id: socketId,
+        channel_name: channelName,
+      },
+      accessToken
+    );
+
+    return response;
+  } catch (error) {
+    handleRequestError(error);
+  }
+};
+
+// Function to send a message
+export const userSendMessage = async (
+  accessToken,
+  id,
+  message,
+  temporaryMsgId
+) => {
+  try {
+    const response = await sendRequest(
+      "POST",
+      "/user/chat/sendMessage",
+      {
+        id,
+        message,
+        temporary_msg_id: temporaryMsgId,
+      },
+      accessToken
+    );
+    return response;
+  } catch (error) {
+    handleRequestError(error);
+    throw error;
+  }
+};
+
+
+// Function to fetch user messages
+export const fetchUserMessages = async (accessToken, id) => {
+  try {
+    const response = await sendRequest(
+      "POST",
+      "/user/chat/fetchMessages",
+      {
+        id,
+      },
+      accessToken
+    );
+    return response;
+  } catch (error) {
+    handleRequestError(error);
+  }
+};
+
+// Function to download a file
+export const userDownloadFile = async () => {
+  try {
+    const response = await sendRequest(
+      "GET",
+      "/user/chat/download/file-name-here"
+    );
+    return response;
+  } catch (error) {
+    handleRequestError(error);
+  }
+};
+// Function to get user's shared photos
+export const getUserSharedPhotos = async (accessToken, userId) => {
+  try {
+    const response = await sendRequest(
+      "POST",
+      "/user/chat/shared",
+      {
+        user_id: userId,
+      },
+      accessToken
+    );
+    return response;
+  } catch (error) {
+    handleRequestError(error);
+  }
+};
+
+// Function to delete a conversation
+export const userDeleteConversation = async (accessToken, id) => {
+  try {
+    const response = await sendRequest(
+      "POST",
+      "/user/chat/deleteConversation",
+      {
+        id,
+      },
+      accessToken
+    );
+    return response;
+  } catch (error) {
+    handleRequestError(error);
+  }
+};
+
+// Function to fetch doctor information by ID
+export const userFetchDoctorByID = async (accessToken, id) => {
+  try {
+    const response = await sendRequest(
+      "POST",
+      "/user/chat/idInfo",
+      {
+        id,
+      },
+      accessToken
+    );
+    return response;
+  } catch (error) {
+    handleRequestError(error);
+  }
+};
+
+// Function to mark a message as seen
+export const userMakeMessageSeen = async (accessToken, id) => {
+  try {
+    const response = await sendRequest(
+      "POST",
+      "/user/chat/makeSeen",
+      {
+        id,
+      },
+      accessToken
+    );
+    return response;
+  } catch (error) {
+    handleRequestError(error);
+  }
+};

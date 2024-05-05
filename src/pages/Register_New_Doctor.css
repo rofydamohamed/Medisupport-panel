@@ -47,6 +47,7 @@
   align-items: flex-start;
   gap: 1rem;
   align-self: stretch;
+  flex-wrap: wrap;
 }
 
 .register .label {

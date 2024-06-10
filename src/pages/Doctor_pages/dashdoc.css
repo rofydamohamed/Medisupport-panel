@@ -1,0 +1,225 @@
+.Dashdoc {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.Dashdoc .Dashdoc-container {
+  height: 100%;
+  min-width: calc(100% - 320px);
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 2.5rem;
+  gap: 3rem;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+.Dashdoc .Dashdoc-container .head{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.Dashdoc .Dashdoc-container h1 {
+  color: #1f1f1f;
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.Dashdoc .Dashdoc-container h1 span {
+  color: var(--Red);
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.Dashdoc .Dashdoc-container .Dashdoc-container-content {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-around; */
+  border-radius: 1.25rem;
+  background: linear-gradient(
+    0deg,
+    rgba(190, 2, 2, 0.76) 0%,
+    rgba(190, 2, 2, 0.52) 100%
+  );
+  padding: 2.5rem;
+  gap: 20%;
+}
+.Dashdoc .Dashdoc-container .Dashdoc-container-content .left {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.Dashdoc .Dashdoc-container .Dashdoc-container-content .left .vis h3,
+.Dashdoc .Dashdoc-container .Dashdoc-container-content .left .vis {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.Dashdoc .Dashdoc-container .Dashdoc-container-content .left .vis h3,
+.Dashdoc .Dashdoc-container .Dashdoc-container-content .left .vis .num {
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.Dashdoc .Dashdoc-container .Dashdoc-container-content .left .patients {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.Dashdoc
+  .Dashdoc-container
+  .Dashdoc-container-content
+  .left
+  .patients
+  .patient {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border-radius: 1.25rem;
+  border: 1px solid #fff;
+  background: #fff;
+  gap: 1.5rem;
+}
+.Dashdoc
+  .Dashdoc-container
+  .Dashdoc-container-content
+  .left
+  .patients
+  .patient
+  h3,
+.Dashdoc
+  .Dashdoc-container
+  .Dashdoc-container-content
+  .left
+  .patients
+  .patient
+  p {
+  color: #be0202;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.Dashdoc
+  .Dashdoc-container
+  .Dashdoc-container-content
+  .left
+  .patients
+  .patient
+  .num {
+  display: flex;
+  justify-content: space-between;
+}
+.Dashdoc
+  .Dashdoc-container
+  .Dashdoc-container-content
+  .left
+  .patients
+  .patient
+  .num
+  .per1 {
+  display: flex;
+  gap: 1rem;
+  padding: 0.3rem;
+  border-radius: 0.625rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.Dashdoc
+  .Dashdoc-container
+  .Dashdoc-container-content
+  .left
+  .patients
+  .patient
+  .num
+  .per2 {
+  display: flex;
+  gap: 1rem;
+  padding: 0.3rem;
+  border-radius: 0.625rem;
+  font-family: 'Roboto',sans-serif;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.Dashdoc .Dashdoc-container .Dashdoc-container-content .right img {
+  width: 100%;
+  max-width: 22vw;
+  border-radius: 1rem;
+}
+
+.Dashdoc .Patients-content {
+  height: 75%;
+  /* min-width: calc(100% - 320px); */
+  display: flex;
+  flex-direction: column;
+  /* padding: 0rem 2.5rem 3rem; */
+}
+.Dashdoc .table-container {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  height: 85%;
+}
+.Dashdoc .table {
+  height: 100%;
+  border-radius: 0.625rem;
+  border: 1px solid var(--Red);
+}
+
+.Dashdoc .table h3 {
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding: 1rem;
+}
+.Dashdoc .Patients-content table {
+  border-collapse: collapse;
+}
+
+.Dashdoc .Patients-content table th,
+.Dashdoc .Patients-content table td {
+  border-bottom: 1px solid #dddddd;
+  padding: 1.5rem;
+  white-space: nowrap;
+}
+.Dashdoc .Patients-content  table tbody tr td:nth-child(7), 
+.Dashdoc .Patients-content table tbody tr td:nth-child(10) { 
+  color:var(--Red);
+}
+
+.Dashdoc .Patients-content table td svg {
+  cursor: pointer;
+}
+
+.Dashdoc .Patients-content table th {
+  font-weight: bold;
+  text-align: left;
+}
+.Dashdoc .Patients-content table thead {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  top: 0;
+  background-color: #ffffff;
+  border-radius: 0.625rem;
+  z-index: 1;
+}
+.Dashdoc .Patients-content table tr:hover {
+  background-color: #f2f2f2;
+}

@@ -1,9 +1,9 @@
-.Patients{
+.Patients {
   display: flex;
   flex-direction: row;
   height: 100%;
 }
-.Patients .Patients-content{
+.Patients .Patients-content {
   height: 100%;
   min-width: calc(100% - 320px);
   /* border-left: 0.01em solid var(--Red); */
@@ -11,4 +11,68 @@
   flex-direction: column;
   padding: 4rem 2.5rem;
   gap: 2rem;
+}
+.Patients .Patients-content h1 {
+  color: var(--Red);
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.Patients .table-container {
+  overflow-x: scroll;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  height: 90%;
+}
+.Patients .table {
+  height: 90%;
+  border-radius: 0.625rem;
+  border: 1px solid var(--Red);
+}
+.Patients .table h3 {
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding: 1rem;
+}
+.Patients .Patients-content table {
+  border-collapse: collapse;
+}
+
+.Patients .Patients-content table th,
+.Patients .Patients-content table td {
+  border-bottom: 1px solid #dddddd;
+  padding: 1.5rem;
+  white-space: nowrap;
+}
+.Patients .Patients-content  table tbody tr td:nth-child(7), 
+.Patients .Patients-content table tbody tr td:nth-child(10) { 
+  color:var(--Red);
+}
+
+.Patients .Patients-content table td svg {
+  cursor: pointer;
+}
+
+.Patients .Patients-content table th {
+  font-weight: bold;
+  text-align: left;
+}
+.Patients .Patients-content table thead {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  top: 0;
+  background-color: #ffffff;
+  border-radius: 0.625rem;
+  z-index: 1;
+}
+.Patients .Patients-content table tr:hover {
+  background-color: #f2f2f2;
 }

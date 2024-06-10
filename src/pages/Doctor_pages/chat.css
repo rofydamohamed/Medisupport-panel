@@ -465,8 +465,12 @@
   .conversation-default.active {
     padding: 16px;
   }
-  .chatt header,
-  .chatt .footer {
+}
+@media screen and (max-width: 1000px) {
+  .chatm ,.chatting{
+    width: 100%;
+  }
+  .chatt .sidebardoc {
     display: none;
   }
 }

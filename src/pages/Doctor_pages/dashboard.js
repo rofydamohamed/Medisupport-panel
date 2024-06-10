@@ -6,32 +6,32 @@ import { Helmet } from "react-helmet-async";
 //import { eachDayOfInterval, format } from "date-fns";
 
 const Dashboarddoc = () => {
-  const [doctorProfile, setuserProfile] = useState([]);
+  const [doctorProfile, setdoctorProfile] = useState([]);
   const baseURL = "http://127.0.0.1:8000/";
 
   useEffect(() => {
-    const fetchuserProfile = async () => {
+    const fetchdoctorProfile = async () => {
       try {
         const accessToken = localStorage.getItem("accessToken");
-        const UserProfile = await getDoctorProfile(accessToken);
+        const doctorProfile = await getDoctorProfile(accessToken);
 
-        const formattedUserProfile = UserProfile.data
+        const formatteddoctorProfile = doctorProfile.data
           ? [
               {
-                avatar:baseURL + UserProfile.data.avatar,
-                name:"DR: " + UserProfile.data.first_name + UserProfile.data.last_name,          
+                avatar: baseURL + doctorProfile.data.avatar,
+                name:"DR: " + doctorProfile.data.first_name + doctorProfile.data.last_name,          
               },
             ]
           : [];
 
-        console.log("formattedUserProfile:", formattedUserProfile);
-        setuserProfile(formattedUserProfile);
+        console.log("formatteddoctorProfile:", formatteddoctorProfile);
+        setdoctorProfile(formatteddoctorProfile);
       } catch (error) {
-        console.error("Error fetching UserProfile:", error);
+        console.error("Error fetching doctorProfile:", error);
       }
     };
 
-    fetchuserProfile();
+    fetchdoctorProfile();
   }, []);
 
   return (

@@ -1,9 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import React, { useState, useRef, useEffect } from "react";
 import "./chat.css";
-//import docchat1 from "../images/doc_chat1.jpeg";
 import Dashboarddoc from "./dashboard";
-
+import Pusher from "pusher-js";
 import {
   getDoctorContacts,
   DoctorChatAuth,
@@ -12,7 +11,6 @@ import {
   fetchDoctorMessages,
   DoctorFetchDoctorByID,
 } from "../../components/apiService.js";
-//import WebSocketClient from "websocket";
 
 const emojis = [
   "😀",
@@ -388,109 +386,75 @@ const emojis = [
 ];
 
 const Chat = () => {
-  //store messages
-  const [messages, setMessages] = useState([]);
-  // emogi
-  //send files
-  const fileInputRef = useRef(null);
-  const [selectedFile, setSelectedFile] = useState(null);
-  //chat
-  //doc
-
-  const selectEmoji = (emoji) => {
-    setCurrentMessage(currentMessage + emoji);
-  };
-  const handleFileUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setSelectedFile(file);
-    }
-  };
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  // State variables
   const [showDefaultConversation, setShowDefaultConversation] = useState(true);
   const [showSidebar, setShowSidebar] = useState(true);
   const [showChat, setShowChat] = useState(false);
-  const [usersData, setusersData] = useState([]);
+  const [usersData, setDoctorsData] = useState([]);
   const [selecteduserInfo, setselecteduserInfo] = useState(null);
   const [currentuserMessages, setcurrentuserMessages] = useState([]);
-  const [currentMessage, setCurrentMessage] = useState("");
+  const [inputMessage, setInputMessage] = useState("");
   const [showPicker, setShowPicker] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const messagesEndRef = useRef(null);
   const baseURL = "http://127.0.0.1:8000/";
-
-  // Function to fetch user contacts
-  const fetchdoctorContacts = async () => {
-    try {
-      const accessToken = localStorage.getItem("accessToken");
-      const contacts = await getDoctorContacts(accessToken);
-      const contactsArray = contacts.contacts;
-
-      // Update usersData state
-      setusersData(
-        contactsArray.map((contact) => ({
-          id: contact.user.id,
-
-          isOnline: contact.user.active_status === 1,
-          contactInfo: {
-            ...contact,
-            user: {
-              ...contact.user,
-              avatar: baseURL + contact.user.avatar,
-            },
-          },
-        }))
-      );
-      console.log("contacts",contacts)
-    } catch (error) {
-      console.error("An error occurred while fetching user contacts:", error);
-    }
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetchdoctorContacts();
+        const accessToken = localStorage.getItem("accessToken");
+        const contacts = await getDoctorContacts(accessToken);
+        const contactsArray = contacts.contacts;
+        setDoctorsData(
+          contactsArray.map((contact) => ({
+            id: contact.user.id,
+            isOnline: contact.user.active_status === 1,
+            contactInfo: {
+              ...contact,
+              user: {
+                ...contact.user,
+                avatar: baseURL + contact.user.avatar,
+              },
+            },
+          }))
+        );
       } catch (error) {
         console.error("An error occurred while fetching user contacts:", error);
       }
     };
 
-    // Fetch data initially
     fetchData();
 
-    // Setup interval to fetch data periodically
     const interval = setInterval(() => {
       fetchData();
     }, 60000);
 
-    // Cleanup interval on component unmount
     return () => clearInterval(interval);
   }, []);
-
-  const handleuserClick = async (user) => {
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+      if (window.innerWidth >= 750 && !selecteduserInfo) {
+        setShowSidebar(true);
+        setShowDefaultConversation(true);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [selecteduserInfo]);
+  const handleuserClick = async (doctor) => {
     try {
       const accessToken = localStorage.getItem("accessToken");
-
-      // Fetch doctor information
-      const doctorInfo = await DoctorFetchDoctorByID(accessToken, user.id);
+      const doctorInfo = await DoctorFetchDoctorByID(accessToken, doctor.id);
       setselecteduserInfo(doctorInfo.fetch);
-      setcurrentuserMessages(user.messages);
+      setcurrentuserMessages(doctor.messages);
       setShowPicker(false);
 
-      // Fetch user messages with the doctor
-      const docMessages = await fetchDoctorMessages(accessToken, user.id);
-      setcurrentuserMessages(docMessages.messages);
+      const userMessages = await fetchDoctorMessages(accessToken, doctor.id);
+      setcurrentuserMessages(userMessages.messages);
 
-      // Mark messages as seen
-      await DoctorMakeMessageSeen(accessToken, user.id);
+      await DoctorMakeMessageSeen(accessToken, doctor.id);
 
-      // Update sidebar and chat visibility based on window width
       if (windowWidth <= 750) {
         setShowSidebar(false);
         setShowChat(true);
@@ -504,55 +468,32 @@ const Chat = () => {
       );
     }
   };
-
-  // Send message
-  const sendMessage = async (e) => {
+  const sendMessage = async (e, message) => {
     e.preventDefault();
-    if (currentMessage.trim() !== "" && selecteduserInfo) {
+    if (inputMessage.trim() !== "" && selecteduserInfo) {
       try {
         const accessToken = localStorage.getItem("accessToken");
         const response = await DoctorSendMessage(
           accessToken,
           selecteduserInfo.id,
-          currentMessage
+          inputMessage
         );
-        const storedMessages =
-          JSON.parse(localStorage.getItem("messages")) || {};
-        const doctorMessages = storedMessages[selecteduserInfo.id] || [];
-        doctorMessages.push({
-          body: currentMessage,
-          from_id: "doctor",
-          created_at: new Date().toISOString(),
-          seen: true,
-        });
-        storedMessages[selecteduserInfo.id] = doctorMessages;
-        localStorage.setItem("messages", JSON.stringify(storedMessages));
-        setCurrentMessage("");
+        setInputMessage("");
       } catch (error) {
         console.error("An error occurred while sending the message:", error);
       }
     }
   };
-
   useEffect(() => {
     const storedMessages = JSON.parse(localStorage.getItem("messages")) || {};
     const doctorMessages = storedMessages[selecteduserInfo?.id] || [];
     setcurrentuserMessages(doctorMessages);
   }, [selecteduserInfo]);
 
-  const handleResize = () => {
-    setWindowWidth(window.innerWidth);
-    if (window.innerWidth >= 750 && !selecteduserInfo) {
-      setShowSidebar(true);
-      setShowDefaultConversation(true);
-    }
-  };
-
-  const handlearrowClick = async () => {
+  const handleArrowClick = async () => {
     try {
       const accessToken = localStorage.getItem("accessToken");
       if (selecteduserInfo) {
-        // Mark messages as seen
         await DoctorMakeMessageSeen(accessToken, selecteduserInfo.id);
       }
 
@@ -563,14 +504,6 @@ const Chat = () => {
       console.error("An error occurred while marking messages as seen:", error);
     }
   };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [selecteduserInfo]);
-
   useEffect(() => {
     if (!selecteduserInfo && !showChat && windowWidth >= 750) {
       setShowDefaultConversation(true);
@@ -600,6 +533,42 @@ const Chat = () => {
     const period = hours >= 12 ? "PM" : "AM";
     return `${displayHours}:${minutes} ${period}`;
   };
+  const selectEmoji = (emoji) => {
+    setInputMessage((prevMessage) => prevMessage + emoji);
+  };
+  useEffect(() => {
+    const authenticateUserForChat = async () => {
+      try {
+        const socketId = "9013.50262712";
+        const channelName = "private-chatify";
+        const accessToken = localStorage.getItem("accessToken");
+
+        const response = await DoctorChatAuth(socketId, channelName, accessToken);
+
+        console.log("Authentication response:", response);
+      } catch (error) {
+        console.error("An error occurred during chat authentication:", error);
+      }
+    };
+
+    authenticateUserForChat();
+  }, []);
+  useEffect(() => {
+    Pusher.logToConsole = true;
+    const pusher = new Pusher("699bcc950016f00a1982", {
+      cluster: "eu",
+      authEndpoint: 'http://localhost:3000/pusher/auth',
+
+    });
+    const channel = pusher.subscribe("private-chatify"); 
+    channel.bind("messaging", function (data) {
+      setcurrentuserMessages(prevMessages => [...prevMessages, data]);
+    });
+    return () => {
+      pusher.unsubscribe("private-chatify"); 
+      pusher.disconnect();
+    };
+  }, []);
 
   return (
     <>
@@ -680,7 +649,7 @@ const Chat = () => {
           {selecteduserInfo && showChat && (
             <div className="chatm">
               <div className="doctorinfor">
-                <div className="convback" onClick={handlearrowClick}>
+                <div className="convback" onClick={handleArrowClick}>
                   <i className="fa-solid fa-arrow-left"></i>
                 </div>
                 {selecteduserInfo && (
@@ -812,19 +781,17 @@ const Chat = () => {
                     <textarea
                       className="textarea"
                       placeholder="Type a message..."
-                      value={currentMessage}
-                      onChange={(e) => setCurrentMessage(e.target.value)}
+                      value={inputMessage}
+                      onChange={(e) => setInputMessage(e.target.value)}
                     />
                   </div>
                   <div
                     className="input-icon"
-                    onClick={() => fileInputRef.current.click()}
                   >
                     <input
                       type="file"
-                      ref={fileInputRef}
+                    
                       style={{ display: "none" }}
-                      onChange={handleFileUpload}
                     />
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

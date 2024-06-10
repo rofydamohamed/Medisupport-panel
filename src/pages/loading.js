@@ -23,7 +23,7 @@ const Loading = () => {
   // Navigate to home page after all icons have been displayed
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      navigate("/dashboard"); // Adjust the path as needed
+      navigate("/Dash"); // Adjust the path as needed
     }, icons.length * 1000 + 1000); // Each icon appears every 1s, +1s buffer
 
     return () => clearTimeout(timeoutId);

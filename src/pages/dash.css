@@ -112,8 +112,8 @@
   line-height: normal;
 }
 .dashboard .table-container {
-  overflow-x: scroll;
-  overflow-y: scroll;
+  overflow-x: hidden;
+  overflow-y: hidden;
   scrollbar-width: none;
   height: 90%;
 }

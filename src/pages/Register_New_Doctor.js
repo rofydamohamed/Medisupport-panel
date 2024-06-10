@@ -43,11 +43,11 @@ const Register_New_Doctor = () => {
     try {
       const formData = new FormData(event.target);
       const doctorData = {
-        firs_name: formData.get("firs_name"),
+        firs_name: formData.get("first_name"),
         last_name: formData.get("last_name"),
         email: formData.get("email"),
         password: formData.get("password"),
-        password_confirmation: formData.get("password"),
+        password_confirmation: formData.get("confirm_password"),
         specialization: formData.get("specialization"),
         bio: formData.get("bio"),
         phone: formData.get("phone"),
@@ -240,7 +240,8 @@ const Register_New_Doctor = () => {
                   </label>
                   <input
                     type="file"
-                    id=""
+                    name="avatar"
+                    id="avatar"
                     ref={hiddenFileInputRef}
                     // style={{ display: "none" }}
                     onChange={handleChange}
@@ -267,8 +268,8 @@ const Register_New_Doctor = () => {
                   className="inp"
                   placeholder="Confirm Password"
                   type="password"
-                  name="password"
-                  id=""
+                  name="confirm_password"
+                  id="confirm_password"
                 />
               </div>
             </div>

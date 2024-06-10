@@ -29,8 +29,6 @@ export const sendRequest = async (method, url, data, accessToken) => {
   }
 };
 
-
-
 export const loginadmin = async (userloginData, setAccessToken) => {
   try {
     const response = await axios.post(
@@ -160,7 +158,7 @@ export const getFirstEightDoctors = async (accessToken) => {
 };
 
 //getAllUsers
-export const getAllUsers = async (accessToken,page) => {
+export const getAllUsers = async (accessToken, page) => {
   try {
     const users = await sendRequest(
       "GET",
@@ -199,28 +197,19 @@ export const getFirstEightUsers = async (accessToken) => {
   }
 };
 
-
 export const RegisterNewDoctor = async (doctorData) => {
   try {
-    const response = await axios.post(
+    const response = await sendRequest(
+      "POST",
       `${BASE_URL}/auth/doctor/register`,
       doctorData
     );
-    const accessToken = response.data.access_token
+    const accessToken = response.data.access_token;
     return accessToken;
   } catch (error) {
-    console.error("Error registering to:", error);
-  };
-}
-
-
-
-
-
-
-
-
-
+    handleRequestError(error);
+  }
+};
 
 //Doctor
 export const logindoctor = async (userloginData, setAccessToken) => {
@@ -239,15 +228,6 @@ export const logindoctor = async (userloginData, setAccessToken) => {
     handleRequestError(error);
   }
 };
-
-
-
-
-
-
-
-
-
 
 //chaaaaaaaaaaaaaaaaaaaaaaaaaatting
 // Function to get user contacts
@@ -308,7 +288,6 @@ export const userSendMessage = async (
     throw error;
   }
 };
-
 
 // Function to fetch user messages
 export const fetchUserMessages = async (accessToken, id) => {

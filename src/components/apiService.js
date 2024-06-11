@@ -28,6 +28,7 @@ export const sendRequest = async (method, url, data, accessToken) => {
     handleRequestError(error);
   }
 };
+
 export const loginadmin = async (userloginData, setAccessToken) => {
   try {
     const response = await axios.post(
@@ -47,6 +48,31 @@ export const loginadmin = async (userloginData, setAccessToken) => {
 export const saveTokenToLocalStorage = (accessToken) => {
   localStorage.setItem("accessToken", accessToken);
 };
+// registerDoctor
+export const RegisterNewDoctor = async (doctorData, accessToken) => {
+  const formData = new FormData();
+  Object.keys(doctorData).forEach(key => {
+    formData.append(key, doctorData[key]);
+  });
+
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/auth/doctor/register`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Authorization": `Bearer ${accessToken}`
+        }
+      }
+    );
+    return response.data;
+  } catch (error) {
+    handleRequestError(error);
+  }
+};
+
+
 //logoutUser
 export const logoutadmin = async (accessToken) => {
   try {
@@ -154,7 +180,7 @@ export const getFirstEightDoctors = async (accessToken) => {
   }
 };
 //getAllUsers
-export const getAllUsers = async (accessToken,page) => {
+export const getAllUsers = async (accessToken, page) => {
   try {
     const users = await sendRequest(
       "GET",
@@ -363,6 +389,7 @@ export const DoctorSendMessage = async (
     throw error;
   }
 };
+
 // Function to fetch user messages
 export const fetchDoctorMessages = async (accessToken, id) => {
   try {

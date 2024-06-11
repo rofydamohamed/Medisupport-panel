@@ -14,7 +14,7 @@ const Register_New_Doctor = () => {
   const hiddenFileInputRef = useRef(null);
 
   const handleClick = (event) => {
-    event.stopPropagation(); // منع انتشار الحدث
+    event.stopPropagation();
     hiddenFileInputRef.current.click();
   };
 
@@ -25,40 +25,41 @@ const Register_New_Doctor = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const formData = new FormData(event.target);
-    formData.append("avatar", selectedFile);
-
+    if (selectedFile) {
+      formData.append("avatar", selectedFile);
+    }
     const doctorData = {
-      admin_id: 1,
+      admin_id: formData.get("admin_id"),
       first_name: formData.get("first_name"),
       last_name: formData.get("last_name"),
-      email: formData.get("email"),
-      password: formData.get("password"),
-      password_confirmation: formData.get("confirm_password"),
       specialization: formData.get("specialization"),
-      bio: formData.get("bio"),
-      phone: formData.get("phone"),
-      price: formData.get("price"),
-      clinic_location: formData.get("clinic_location"),
       working_hours: formData.get("working_hours"),
-      avatar: selectedFile, // تحديد الصورة المحددة هنا
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      clinic_location: formData.get("clinic_location"),
+      bio: formData.get("bio"),
+      price: formData.get("price"),
+      password: formData.get("password"),
+      confirm_password: formData.get("confirm_password"),
+      avatar: formData.get("avatar"),
     };
-
+  
     try {
-      const accessToken = await RegisterNewDoctor(doctorData, setAccessToken);
-      saveTokenToLocalStorage(accessToken);
-      setAccessToken(accessToken);
-      console.log("access_token:", accessToken);
-      // Send userData directly without JSON.stringify
-      // Reset form fields after successful submission
+      const accessToken = localStorage.getItem("accessToken");
+      if (!accessToken) {
+        throw new Error("Access token not found");
+      }
+      const response = await RegisterNewDoctor(doctorData, accessToken); 
+      console.log("Doctor registered successfully:", response);
       event.target.reset();
       setSelectedFile(null);
     } catch (error) {
       console.error("Error registering doctor:", error);
-      alert("Failed to register doctor. Please try again.");
     }
   };
+  
+
   return (
     <>
       <Helmet>
@@ -73,6 +74,19 @@ const Register_New_Doctor = () => {
           </div>
           <h1>Register</h1>
           <form onSubmit={handleSubmit} className="form">
+            <div className="text_field">
+              <div className="label">Admin ID</div>
+              <div className="field">
+                <input
+                  className="inp"
+                  placeholder="Admin ID"
+                  type="text"
+                  name="admin_id"
+                  id="admin_id"
+                  required
+                />
+              </div>
+            </div>
             <div className="field_group">
               <div className="text_field">
                 <div className="label">FName</div>
@@ -83,6 +97,7 @@ const Register_New_Doctor = () => {
                     type="text"
                     name="first_name"
                     id="first_name"
+                    required
                   />
                 </div>
               </div>
@@ -96,6 +111,7 @@ const Register_New_Doctor = () => {
                     type="text"
                     name="last_name"
                     id="last_name"
+                    required
                   />
                 </div>
               </div>
@@ -110,6 +126,7 @@ const Register_New_Doctor = () => {
                     type="text"
                     name="specialization"
                     id="specialization"
+                    required
                   />
                 </div>
               </div>
@@ -123,6 +140,7 @@ const Register_New_Doctor = () => {
                     type="text"
                     name="working_hours"
                     id="working_hours"
+                    required
                   />
                 </div>
               </div>
@@ -136,6 +154,7 @@ const Register_New_Doctor = () => {
                   type="text"
                   name="email"
                   id="email"
+                  required
                 />
               </div>
             </div>
@@ -148,6 +167,7 @@ const Register_New_Doctor = () => {
                   type="text"
                   name="phone"
                   id="phone"
+                  required
                 />
               </div>
             </div>
@@ -160,6 +180,7 @@ const Register_New_Doctor = () => {
                   type="text"
                   name="clinic_location"
                   id="clinic_location"
+                  required
                 />
               </div>
             </div>
@@ -172,6 +193,7 @@ const Register_New_Doctor = () => {
                   type="text"
                   name="bio"
                   id="bio"
+                  required
                 />
               </div>
             </div>
@@ -185,6 +207,7 @@ const Register_New_Doctor = () => {
                     type="text"
                     name="price"
                     id="price"
+                    required
                   />
                 </div>
               </div>
@@ -250,6 +273,7 @@ const Register_New_Doctor = () => {
                   type="password"
                   name="password"
                   id="password"
+                  required
                 />
               </div>
             </div>
@@ -262,11 +286,12 @@ const Register_New_Doctor = () => {
                   type="password"
                   name="confirm_password"
                   id="confirm_password"
+                  required
                 />
               </div>
             </div>
             <button type="submit" className="reg">
-              <NavLink>Register</NavLink>
+              Register
             </button>
           </form>
         </div>

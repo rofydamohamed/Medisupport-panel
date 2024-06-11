@@ -48,6 +48,31 @@ export const loginadmin = async (userloginData, setAccessToken) => {
 export const saveTokenToLocalStorage = (accessToken) => {
   localStorage.setItem("accessToken", accessToken);
 };
+// registerDoctor
+export const RegisterNewDoctor = async (doctorData, accessToken) => {
+  const formData = new FormData();
+  Object.keys(doctorData).forEach(key => {
+    formData.append(key, doctorData[key]);
+  });
+
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/auth/doctor/register`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Authorization": `Bearer ${accessToken}`
+        }
+      }
+    );
+    return response.data;
+  } catch (error) {
+    handleRequestError(error);
+  }
+};
+
+
 //logoutUser
 export const logoutadmin = async (accessToken) => {
   try {
@@ -197,19 +222,8 @@ export const getFirstEightUsers = async (accessToken) => {
   }
 };
 
-export const RegisterNewDoctor = async (doctorData) => {
-  try {
-    const response = await sendRequest(
-      "POST",
-      `${BASE_URL}/auth/doctor/register`,
-      doctorData
-    );
-    const accessToken = response.data.access_token;
-    return accessToken;
-  } catch (error) {
-    handleRequestError(error);
-  }
-};
+
+
 
 //Doctor
 export const logindoctor = async (userloginData, setAccessToken) => {

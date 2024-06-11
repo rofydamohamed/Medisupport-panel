@@ -13,6 +13,25 @@
   padding: 4rem 2.5rem;
   gap: 2rem;
 }
+.Contacts .Contacts-container .s1 {
+  color: #393939;
+  opacity: 0.4993;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.387px;
+}
+.Contacts .Contacts-container .s2 {
+  color: var(--Red);
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.387px;
+}
 
 .Contacts .Contacts-container h1 {
   color: var(--Red);

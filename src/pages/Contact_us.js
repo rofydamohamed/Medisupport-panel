@@ -61,6 +61,12 @@ const ContactUs = () => {
       <div className="Contacts">
         <Dashboard />
         <div className="Contacts-container">
+        <div className="title">
+            <p>
+              <span className="s1">pages</span> <span className="s1">/</span>{" "}
+              <span className="s2">Contact us</span>
+            </p>
+          </div>
           <h1>Contact us</h1>
           <div className="table">
               <h3>Contacts</h3>

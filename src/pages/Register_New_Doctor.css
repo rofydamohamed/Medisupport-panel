@@ -2,17 +2,37 @@
   display: flex;
   flex-direction: row;
 }
-.page .register{
-  width:  calc(100% - 320px);
+.page .register {
+  width: calc(100% - 320px);
   border-left: 0.01em solid var(--Red);
 }
+.page .register .s1 {
+  color: #393939;
+  opacity: 0.4993;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.387px;
+}
+.page .register .s2 {
+  color: var(--Red);
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.387px;
+}
+
 .register h1 {
   color: #be0202;
   font-family: "Roboto", sans-serif;
   font-size: 2.625rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 110%; 
+  line-height: 110%;
 }
 
 .register .form {
@@ -106,7 +126,7 @@
   background: #be0202;
   cursor: pointer;
 }
-.register .reg:hover{
+.register .reg:hover {
   opacity: 0.7;
 }
 
@@ -121,7 +141,7 @@
   letter-spacing: 0.03125rem;
 }
 
-.icon{
+.icon {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;

@@ -73,7 +73,7 @@ const Doctors = () => {
       console.error("Error deleting doctor:", error);
     }
   };
-  
+
   return (
     <>
       <Helmet>
@@ -83,6 +83,12 @@ const Doctors = () => {
       <div className="doctots">
         <Dashboard />
         <div className="doctors-container">
+          <div className="title">
+            <p>
+              <span className="s1">pages</span> <span className="s1">/</span>{" "}
+              <span className="s2">Doctors</span>
+            </p>
+          </div>
           <h1>Doctors</h1>
           <div className="table">
             <h3>Doctors</h3>

@@ -58,6 +58,12 @@ const Users = () => {
       <div className="Users">
         <Dashboard />
         <div className="Users-container">
+        <div className="title">
+            <p>
+              <span className="s1">pages</span> <span className="s1">/</span>{" "}
+              <span className="s2">Users</span>
+            </p>
+          </div>
           <h1>Users</h1>
           <div className="table">
             <h3>Users</h3>

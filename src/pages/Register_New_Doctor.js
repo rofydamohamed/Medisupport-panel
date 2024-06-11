@@ -44,13 +44,13 @@ const Register_New_Doctor = () => {
       confirm_password: formData.get("confirm_password"),
       avatar: formData.get("avatar"),
     };
-  
+
     try {
       const accessToken = localStorage.getItem("accessToken");
       if (!accessToken) {
         throw new Error("Access token not found");
       }
-      const response = await RegisterNewDoctor(doctorData, accessToken); 
+      const response = await RegisterNewDoctor(doctorData, accessToken);
       console.log("Doctor registered successfully:", response);
       event.target.reset();
       setSelectedFile(null);
@@ -58,7 +58,6 @@ const Register_New_Doctor = () => {
       console.error("Error registering doctor:", error);
     }
   };
-  
 
   return (
     <>
@@ -70,7 +69,10 @@ const Register_New_Doctor = () => {
         <Dashboard />
         <div className="register">
           <div className="title">
-            <p>pages/Register</p>
+            <p>
+              <span className="s1">pages</span> <span className="s1">/</span>{" "}
+              <span className="s2">Register</span>
+            </p>
           </div>
           <h1>Register</h1>
           <form onSubmit={handleSubmit} className="form">

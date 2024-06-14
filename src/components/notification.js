@@ -39,9 +39,16 @@ const Notification = () => {
     }
   };
 
-  const formatDateTime = (dateTime) => {
-    const date = new Date(dateTime);
-    return `${format(date, "h:mm a")} || ${format(date, "M/d/yyyy")}`;
+  const formatDateTime = (date) => {
+    try {
+      if (isNaN(new Date(date).getTime())) {
+        throw new RangeError('Invalid time value');
+      }
+      return format(new Date(date), 'yyyy-MM-dd | | HH:mm:ss');
+    } catch (error) {
+      console.error('Error formatting date:', error);
+      return 'Invalid date';
+    }
   };
 
   const handleMarkAllRead = async () => {

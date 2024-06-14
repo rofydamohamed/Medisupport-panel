@@ -25,7 +25,8 @@
   font-family: "Arizonia", cursive;
 }
 .sidebardoc .sidebardoc-header p img{
-  width: 11vw;
+  width: 15vw;
+  height: 25vh;
   border-radius: 10%;
 }
 .sidebardoc .sidebardoc-header span {

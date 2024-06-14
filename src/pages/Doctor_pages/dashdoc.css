@@ -156,7 +156,8 @@
 }
 .Dashdoc .Dashdoc-container .Dashdoc-container-content .right img {
   width: 100%;
-  max-width: 22vw;
+  min-width: 30vw;
+  height: 45vh;
   border-radius: 1rem;
 }
 

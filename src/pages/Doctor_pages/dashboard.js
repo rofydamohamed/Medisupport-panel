@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { NavLink ,Link} from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { getDoctorProfile } from "../../components/apiService";
 import "./dashboard.css";
 import { Helmet } from "react-helmet-async";
 //import { eachDayOfInterval, format } from "date-fns";
+import { useNavigate } from "react-router-dom";
+import { logoutDoctor } from "../../components/apiService";
 
 const Dashboarddoc = () => {
   const [doctorProfile, setdoctorProfile] = useState([]);
   const baseURL = "http://127.0.0.1:8000/";
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchdoctorProfile = async () => {
@@ -33,7 +36,16 @@ const Dashboarddoc = () => {
 
     fetchdoctorProfile();
   }, []);
-
+  const handleLogout = async () => {
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      await logoutDoctor(accessToken);
+      navigate("/logdoc"); 
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+  
   return (
     <>
       <Helmet>
@@ -363,7 +375,7 @@ const Dashboarddoc = () => {
             </NavLink>
           </li>
           <li>
-            <Link to="" className="fill">
+            <Link to="" className="fill" onClick={handleLogout}>
               {" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"

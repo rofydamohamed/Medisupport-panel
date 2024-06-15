@@ -26,6 +26,7 @@ const Notification = () => {
       console.log("Notifications:", response);
     } catch (error) {
       console.error("Error loading notifications:", error);
+      // Optionally, set an error state or display an error message
     }
   };
 
@@ -44,7 +45,7 @@ const Notification = () => {
       if (isNaN(new Date(date).getTime())) {
         throw new RangeError('Invalid time value');
       }
-      return format(new Date(date), 'yyyy-MM-dd | | HH:mm:ss');
+      return format(new Date(date), 'yyyy-MM-dd | HH:mm:ss');
     } catch (error) {
       console.error('Error formatting date:', error);
       return 'Invalid date';
@@ -64,6 +65,7 @@ const Notification = () => {
       );
     } catch (error) {
       console.error("Error marking all notifications as read:", error);
+      // Optionally, set an error state or display an error message
     }
   };
 
@@ -80,6 +82,7 @@ const Notification = () => {
       );
     } catch (error) {
       console.error("Error marking notification as read:", error);
+      // Optionally, set an error state or display an error message
     }
   };
 
@@ -117,7 +120,7 @@ const Notification = () => {
             Mark all read
             <input
               type="checkbox"
-              checked={allRead}
+              checked={allRead && notifications.every(notification => notification.read_at)}
               className="check"
               onChange={handleMarkAllRead}
             />
@@ -126,12 +129,10 @@ const Notification = () => {
         {notifications.length === 0 ? (
           <div className="empty-message">No notifications available</div>
         ) : (
-          notifications.map((notification, index) => (
+          notifications.map((notification) => (
             <div
-              className={`notification-item ${
-                notification.read_at ? "read" : ""
-              }`}
-              key={index}
+              className={`notification-item ${notification.read_at ? "read" : ""}`}
+              key={notification.id}
               onClick={() => handleReadNotification(notification.id)}
             >
               <div className="message">

@@ -113,17 +113,19 @@
 
 .register .reg {
   display: flex;
-  height: 3rem;
-  padding: 1rem 0.75rem;
+  background-color: var(--Red);
+  color: var(--whiteColor);
+  width: 100%;
+  padding: 1.4vh 16.7vw;
   justify-content: center;
   align-items: center;
-  align-self: stretch;
-  flex: 1 0 0;
-  color: rgb(255, 255, 255);
-  border-radius: 0.625rem;
-  font-size: 1.5rem;
-  border: 2px solid #be0202;
-  background: #be0202;
+  border-radius: 0.4rem;
+  border: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.3em;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   cursor: pointer;
 }
 .register .reg:hover {
@@ -149,4 +151,68 @@
   justify-content: space-between;
   gap: inherit;
   cursor: pointer;
+}
+
+
+
+/* after-click-btn */
+.register .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 161%;
+  background: rgba(18, 22, 25, 0.65);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.register .overlay .done {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  max-height: 3rem;
+  padding: 1rem 5rem;
+  align-items: center;
+  color: var(--whiteColor);
+  border-radius: 0.625rem;
+  background: #3D9C26;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: 0.03125rem;
+}
+.register .overlay .done:hover {
+  opacity: 0.7;
+}
+.register .overlay button{
+  border-radius: 0.625rem;
+  border: none;
+  background: var(--Red);
+}
+.register .overlay .Registernew {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  max-height: 3rem;
+  padding: 1rem 1.5rem;
+  align-items: center;
+  color: var(--whiteColor);
+  border-radius: 0.625rem;
+  background: var(--Red);
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: 0.03125rem;
+}
+.register .overlay .Registernew:hover {
+  opacity: 0.7;
 }

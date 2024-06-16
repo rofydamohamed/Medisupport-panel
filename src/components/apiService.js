@@ -6,28 +6,37 @@ const BASE_URL = "http://127.0.0.1:8000/api";
 export const handleRequestError = (error) => {
   let errorMessage = "";
   if (error.response) {
-    errorMessage = `Error: ${error.response.status} - ${error.response.data.message}`;
+      errorMessage = `Error: ${error.response.status} - ${error.response.data.message}`;
+      console.error(errorMessage);
+      alert(errorMessage);
+      throw error;
   } else if (error.request) {
-    errorMessage = "Network Error: No response received";
+      errorMessage = "Network Error: No response received";
+      console.error(errorMessage);
+      alert(errorMessage);
   } else {
-    errorMessage = `Error: ${error.message}`;
+      errorMessage = `Error: ${error.message}`;
+      console.error(errorMessage);
+      alert(errorMessage);
   }
   throw new Error(errorMessage);
 };
-// send request with stored token  for data
+
+// send request with stored token for data
 export const sendRequest = async (method, url, data, accessToken) => {
   try {
-    const response = await axios({
-      method: method,
-      url: `${BASE_URL}${url}`,
-      data: data,
-      headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
-    });
-    return response.data;
+      const response = await axios({
+          method: method,
+          url: `${BASE_URL}${url}`,
+          data: data,
+          headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+      });
+      return response.data;
   } catch (error) {
-    handleRequestError(error);
+      handleRequestError(error);
   }
 };
+
 
 export const loginadmin = async (userloginData, setAccessToken) => {
   try {
@@ -451,7 +460,7 @@ export const DoctorDeleteConversation = async (accessToken, id) => {
 };
 
 // Function to fetch doctor information by ID
-export const DoctorFetchDoctorByID = async (accessToken, id) => {
+export const DoctorFetchUserByID = async (accessToken, id) => {
   try {
     const response = await sendRequest(
       "POST",

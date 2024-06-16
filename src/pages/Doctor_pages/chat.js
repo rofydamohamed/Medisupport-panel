@@ -9,7 +9,11 @@ import {
   DoctorMakeMessageSeen,
   DoctorSendMessage,
   fetchDoctorMessages,
-  DoctorFetchDoctorByID,
+  DoctorFetchUserByID,
+  deleteDoctorMessage,
+  DoctorDeleteConversation,
+  getDoctorSharedPhotos,
+  DoctorDownloadFile,
 } from "../../components/apiService.js";
 
 const emojis = [
@@ -397,38 +401,40 @@ const Chat = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const messagesEndRef = useRef(null);
   const baseURL = "http://127.0.0.1:8000/";
+  const [selectedFile, setSelectedFile] = useState(null);
+
+
+
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const accessToken = localStorage.getItem("accessToken");
-        const contacts = await getDoctorContacts(accessToken);
-        const contactsArray = contacts.contacts;
-        setDoctorsData(
-          contactsArray.map((contact) => ({
-            id: contact.user.id,
-            isOnline: contact.user.active_status === 1,
-            contactInfo: {
-              ...contact,
-              user: {
-                ...contact.user,
-                avatar: baseURL + contact.user.avatar,
-              },
-            },
-          }))
-        );
-      } catch (error) {
-        console.error("An error occurred while fetching user contacts:", error);
-      }
+        try {
+            const accessToken = localStorage.getItem("accessToken");
+            const contacts = await getDoctorContacts(accessToken);
+            const contactsArray = contacts.contacts;
+            setDoctorsData(
+                contactsArray.map((contact) => ({
+                    id: contact.user.id,
+                    isOnline: contact.user.active_status === 1,
+                    contactInfo: {
+                        ...contact,
+                        user: {
+                            ...contact.user,
+                            avatar: baseURL + contact.user.avatar,
+                        },
+                    },
+                }))
+            );
+        } catch (error) {
+            console.error("An error occurred while fetching user contacts:", error);
+        }
     };
 
     fetchData();
-
-    const interval = setInterval(() => {
-      fetchData();
-    }, 60000);
+    const interval = setInterval(fetchData, 60000);
 
     return () => clearInterval(interval);
-  }, []);
+}, []);
+
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -442,68 +448,7 @@ const Chat = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [selecteduserInfo]);
-  const handleuserClick = async (doctor) => {
-    try {
-      const accessToken = localStorage.getItem("accessToken");
-      const doctorInfo = await DoctorFetchDoctorByID(accessToken, doctor.id);
-      setselecteduserInfo(doctorInfo.fetch);
-      setcurrentuserMessages(doctor.messages);
-      setShowPicker(false);
 
-      const userMessages = await fetchDoctorMessages(accessToken, doctor.id);
-      setcurrentuserMessages(userMessages.messages);
-
-      await DoctorMakeMessageSeen(accessToken, doctor.id);
-
-      if (windowWidth <= 750) {
-        setShowSidebar(false);
-        setShowChat(true);
-      } else {
-        setShowChat(true);
-      }
-    } catch (error) {
-      console.error(
-        "An error occurred while fetching doctor information:",
-        error
-      );
-    }
-  };
-  const sendMessage = async (e, message) => {
-    e.preventDefault();
-    if (inputMessage.trim() !== "" && selecteduserInfo) {
-      try {
-        const accessToken = localStorage.getItem("accessToken");
-        const response = await DoctorSendMessage(
-          accessToken,
-          selecteduserInfo.id,
-          inputMessage
-        );
-        setInputMessage("");
-      } catch (error) {
-        console.error("An error occurred while sending the message:", error);
-      }
-    }
-  };
-  useEffect(() => {
-    const storedMessages = JSON.parse(localStorage.getItem("messages")) || {};
-    const doctorMessages = storedMessages[selecteduserInfo?.id] || [];
-    setcurrentuserMessages(doctorMessages);
-  }, [selecteduserInfo]);
-
-  const handleArrowClick = async () => {
-    try {
-      const accessToken = localStorage.getItem("accessToken");
-      if (selecteduserInfo) {
-        await DoctorMakeMessageSeen(accessToken, selecteduserInfo.id);
-      }
-
-      setselecteduserInfo(null);
-      setShowChat(false);
-      setShowPicker(false);
-    } catch (error) {
-      console.error("An error occurred while marking messages as seen:", error);
-    }
-  };
   useEffect(() => {
     if (!selecteduserInfo && !showChat && windowWidth >= 750) {
       setShowDefaultConversation(true);
@@ -525,6 +470,62 @@ const Chat = () => {
       setShowSidebar(true);
     }
   }, [selecteduserInfo, windowWidth]);
+
+  useEffect(() => {
+    if (selecteduserInfo) {
+      const storedMessages = JSON.parse(localStorage.getItem("messages")) || {};
+      const doctorMessages = storedMessages[selecteduserInfo.id] || [];
+      setcurrentuserMessages(doctorMessages);
+    }
+  }, [selecteduserInfo]);
+
+  useEffect(() => {
+    const authenticateUserForChat = async () => {
+      try {
+        const socketId = "9013.50262712";
+        const channelName = "private-chatify";
+        const accessToken = localStorage.getItem("accessToken");
+        const response = await DoctorChatAuth(socketId, channelName, accessToken);
+        console.log("Authentication response:", response);
+      } catch (error) {
+        console.error("An error occurred during chat authentication:", error);
+      }
+    };
+    authenticateUserForChat();
+  }, []);
+
+  useEffect(() => {
+    Pusher.logToConsole = true;
+    const pusher = new Pusher("699bcc950016f00a1982", {
+      cluster: "eu",
+    });
+    const channel = pusher.subscribe("private-chatify");
+    channel.bind("messaging", function (data) {
+      if (selecteduserInfo && data.to_id === selecteduserInfo.id) {
+        setcurrentuserMessages((prevMessages) => [...prevMessages, data]);
+      }
+    });
+    
+    return () => {
+      pusher.unsubscribe("private-chatify");
+      pusher.disconnect();
+    };
+  }, [selecteduserInfo]);
+  
+  const handleArrowClick = async () => {
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      if (selecteduserInfo) {
+        await DoctorMakeMessageSeen(accessToken, selecteduserInfo.id);
+      }
+      setselecteduserInfo(null);
+      setShowChat(false);
+      setShowPicker(false);
+    } catch (error) {
+      console.error("An error occurred while marking messages as seen:", error);
+    }
+  };
+
   const formatTime = (createdAt) => {
     const date = new Date(createdAt);
     const hours = date.getHours();
@@ -533,42 +534,67 @@ const Chat = () => {
     const period = hours >= 12 ? "PM" : "AM";
     return `${displayHours}:${minutes} ${period}`;
   };
+
   const selectEmoji = (emoji) => {
     setInputMessage((prevMessage) => prevMessage + emoji);
   };
-  useEffect(() => {
-    const authenticateUserForChat = async () => {
-      try {
-        const socketId = "9013.50262712";
-        const channelName = "private-chatify";
-        const accessToken = localStorage.getItem("accessToken");
 
-        const response = await DoctorChatAuth(socketId, channelName, accessToken);
-
-        console.log("Authentication response:", response);
-      } catch (error) {
-        console.error("An error occurred during chat authentication:", error);
+  const handleuserClick = async (doctor) => {
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      const doctorInfo = await DoctorFetchUserByID(accessToken, doctor.id);
+      setselecteduserInfo(doctorInfo.fetch);
+      const userMessages = await fetchDoctorMessages(accessToken, doctor.id);
+      setcurrentuserMessages(userMessages.messages);
+      await DoctorMakeMessageSeen(accessToken, doctor.id);
+      if (windowWidth <= 750) {
+        setShowSidebar(false);
+        setShowChat(true);
+      } else {
+        setShowChat(true);
       }
+    } catch (error) {
+      console.error("An error occurred while fetching doctor information:", error);
+    }
+  };
+  const handleSendMessage = async (event) => {
+    event.preventDefault();
+    if (!inputMessage.trim() && !selectedFile) return;
+
+    const temporaryMsgId = new Date().getTime().toString();
+    const newMessage = {
+        from_id: "yourUserId",
+        to_id: selecteduserInfo.id,
+        content: inputMessage,
+        temporary_msg_id: temporaryMsgId,
     };
 
-    authenticateUserForChat();
-  }, []);
-  useEffect(() => {
-    Pusher.logToConsole = true;
-    const pusher = new Pusher("699bcc950016f00a1982", {
-      cluster: "eu",
-      authEndpoint: 'http://localhost:3000/pusher/auth',
+    setcurrentuserMessages((prevMessages) => [...prevMessages, newMessage]);
+    setInputMessage("");
 
-    });
-    const channel = pusher.subscribe("private-chatify"); 
-    channel.bind("messaging", function (data) {
-      setcurrentuserMessages(prevMessages => [...prevMessages, data]);
-    });
-    return () => {
-      pusher.unsubscribe("private-chatify"); 
-      pusher.disconnect();
-    };
-  }, []);
+    try {
+        const accessToken = localStorage.getItem("accessToken");
+        await DoctorSendMessage(accessToken, selecteduserInfo.id, inputMessage, temporaryMsgId);
+        const updatedMessages = await fetchDoctorMessages(accessToken, selecteduserInfo.id);
+        setcurrentuserMessages(updatedMessages.messages);
+    } catch (error) {
+        console.error("An error occurred while sending message:", error);
+    }
+};
+
+const handleDeleteConversation = async () => {
+  if (window.confirm("Are you sure you want to delete this conversation?")) {
+      try {
+          const accessToken = localStorage.getItem("accessToken");
+          await DoctorDeleteConversation(accessToken, setselecteduserInfo.id);
+          setcurrentuserMessages([]);
+          setselecteduserInfo(null);
+          localStorage.removeItem("messages");
+      } catch (error) {
+          console.error("An error occurred while deleting the conversation:", error);
+      }
+  }
+};
 
   return (
     <>
@@ -827,7 +853,7 @@ const Chat = () => {
                     />
                   </svg>
                 </button>
-                <button type="submit" onClick={(e) => sendMessage(e)}>
+                <button type="submit" onClick={(e) => handleSendMessage(e)}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="41"

@@ -63,6 +63,10 @@ const Patients = () => {
       <div className="Patients">
         <Dashboarddoc />
         <div className="Patients-content">
+          <p>
+            <span className="s1">pages</span> <span className="s1">/</span>{" "}
+            <span className="s2">Patients</span>
+          </p>
           <h1>Patients</h1>
           <div className="table">
             <h3>Patients</h3>
@@ -127,8 +131,7 @@ const Patients = () => {
                         <td
                           style={{
                             color:
-                              (user.heart_rate >= 60) &
-                              (user.heart_rate <= 100)
+                              (user.heart_rate >= 60) & (user.heart_rate <= 100)
                                 ? "green"
                                 : "red",
                           }}

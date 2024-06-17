@@ -1,0 +1,46 @@
+.addappoint {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+.addappoint .adding {
+  height: 100%;
+  min-width: calc(100% - 320px);
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 2.5rem;
+  gap: 2rem;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+.addappoint .adding h1 {
+  color: var(--Red);
+  font-family: 'Roboto',sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.addappoint .adding .title{
+  display: flex;
+  justify-content: space-between;
+}
+.addappoint .adding .title .s1 {
+  color: #393939;
+  opacity: 0.4993;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.387px;
+}
+.addappoint .adding .title .s2 {
+  color: var(--Red);
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.387px;
+}

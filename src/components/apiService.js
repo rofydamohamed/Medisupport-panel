@@ -6,18 +6,18 @@ const BASE_URL = "http://127.0.0.1:8000/api";
 export const handleRequestError = (error) => {
   let errorMessage = "";
   if (error.response) {
-      errorMessage = `Error: ${error.response.status} - ${error.response.data.message}`;
-      console.error(errorMessage);
-      alert(errorMessage);
-      throw error;
+    errorMessage = `Error: ${error.response.status} - ${error.response.data.message}`;
+    console.error(errorMessage);
+    alert(errorMessage);
+    throw error;
   } else if (error.request) {
-      errorMessage = "Network Error: No response received";
-      console.error(errorMessage);
-      alert(errorMessage);
+    errorMessage = "Network Error: No response received";
+    console.error(errorMessage);
+    alert(errorMessage);
   } else {
-      errorMessage = `Error: ${error.message}`;
-      console.error(errorMessage);
-      alert(errorMessage);
+    errorMessage = `Error: ${error.message}`;
+    console.error(errorMessage);
+    alert(errorMessage);
   }
   throw new Error(errorMessage);
 };
@@ -25,18 +25,17 @@ export const handleRequestError = (error) => {
 // send request with stored token for data
 export const sendRequest = async (method, url, data, accessToken) => {
   try {
-      const response = await axios({
-          method: method,
-          url: `${BASE_URL}${url}`,
-          data: data,
-          headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
-      });
-      return response.data;
+    const response = await axios({
+      method: method,
+      url: `${BASE_URL}${url}`,
+      data: data,
+      headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+    });
+    return response.data;
   } catch (error) {
-      handleRequestError(error);
+    handleRequestError(error);
   }
 };
-
 
 export const loginadmin = async (userloginData, setAccessToken) => {
   try {
@@ -533,6 +532,97 @@ export const getAllBookingCount = async (accessToken) => {
       accessToken
     );
     return bookingCount;
+  } catch (error) {
+    handleRequestError(error);
+  }
+};
+
+//make appointment
+export const storeDateRequest = async (accessToken, date) => {
+  try {
+    const response = await sendRequest(
+      "POST",
+      "/doctor/store-date",
+      { date },
+      accessToken
+    );
+    return response;
+  } catch (error) {
+    handleRequestError(error);
+  }
+};
+
+export const storeTimeRequest = async (accessToken, time, dateId) => {
+  try {
+    const response = await sendRequest(
+      "POST",
+      "/doctor/store-time",
+      { time, date_id: dateId },
+      accessToken
+    );
+    return response;
+  } catch (error) {
+    handleRequestError(error);
+  }
+};
+
+export const getAllBookings = async (accessToken) => {
+  try {
+    const response = await sendRequest(
+      "GET",
+      "/doctor/all-booking",
+      null,
+      accessToken
+    );
+    return response;
+  } catch (error) {
+    handleRequestError(error);
+  }
+};
+
+export const deleteAppointment = async (accessToken, dateId, timeId) => {
+  try {
+    const response = await sendRequest(
+      "DELETE",
+      `/doctor/delete-appointment?date_id=${dateId}&time_id=${timeId}`,
+      null,
+      accessToken
+    );
+    return response;
+  } catch (error) {
+    handleRequestError(error);
+  }
+};
+
+export const updateAppointment = async (
+  accessToken,
+  timeId,
+  dateId,
+  newTime,
+  newDate
+) => {
+  try {
+    const response = await sendRequest(
+      "PUT",
+      `/doctor/update-appointment?time_id=${timeId}&date_id=${dateId}&new_time=${newTime}&new_date=${newDate}`,
+      null,
+      accessToken
+    );
+    return response;
+  } catch (error) {
+    handleRequestError(error);
+  }
+};
+
+export const getAllAppointments = async (accessToken) => {
+  try {
+    const response = await sendRequest(
+      "GET",
+      "/doctor/get-all-appointment",
+      null,
+      accessToken
+    );
+    return response;
   } catch (error) {
     handleRequestError(error);
   }

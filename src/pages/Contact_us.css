@@ -7,7 +7,6 @@
 .Contacts .Contacts-container {
   height: 100%;
   min-width: calc(100% - 320px);
-  /* border-left: 0.01em solid var(--Red); */
   display: flex;
   flex-direction: column;
   padding: 4rem 2.5rem;
@@ -45,7 +44,6 @@
 .Contacts .table-container {
   overflow-x: scroll;
   overflow-y: scroll; 
-  scrollbar-width: none;
   height: 90%;
 }
 .Contacts .table {

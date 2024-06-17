@@ -20,7 +20,25 @@
   font-weight: 700;
   line-height: normal;
 }
-
+.Patients .Patients-content .s1 {
+  color: #393939;
+  opacity: 0.4993;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.387px;
+}
+.Patients .Patients-content .s2 {
+  color: var(--Red);
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.387px;
+}
 .Patients .table-container {
   overflow-x: scroll;
   overflow-y: scroll;

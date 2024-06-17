@@ -22,7 +22,8 @@ import Chat from "./pages/Doctor_pages/chat";
 import Patients from "./pages/Doctor_pages/patients"
 import Appointments from "./pages/Doctor_pages/appointments"
 import Article from "./pages/Doctor_pages/articles";
-import Makeappointment from "./pages/Doctor_pages/makeappointment"
+import Makeappointment from "./pages/Doctor_pages/makeappointment";
+import Addappointment from "./pages/Doctor_pages/addappointment";
 import Profile from "./pages/Doctor_pages/profile"
 import Rooms from "./pages/Doctor_pages/rooms";
 
@@ -86,8 +87,13 @@ const router = createBrowserRouter([
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
-    path: "Makeappointment",
+    path: "/Makeappointment",
     element: <Makeappointment />,
+    errorElement: <h1>Sorry, No page to display....</h1>,
+  },
+  {
+    path: "/addappointment",
+    element: <Addappointment />,
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {

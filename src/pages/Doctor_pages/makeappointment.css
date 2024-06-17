@@ -1,0 +1,91 @@
+.appoint_page {
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebardoc {
+    display: flex;
+    flex-direction: column;
+    min-width: 320px;
+    height: 100%;
+    color: #000000;
+    border-right: 0.02em solid var(--Red);
+}
+
+.make {
+    width: calc(100% - 320px);
+    display: flex;
+    height: 100%;
+    padding: 4.125rem 2rem 0rem 2rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3.125rem;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+.add_app {
+    width: 5.1875rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+    border-radius: 0.625rem;
+    border: 1px solid #BE0202;
+    background: #FFF;
+    color: #BE0202;
+    font-family: Roboto;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    align-self: end;
+}
+
+.appoints {
+    display: flex;
+    width: initial;
+    height: 100%;
+    flex-shrink: 0;
+    border-radius: 0.625rem;
+    border: 1px solid #BE0202;
+    align-self: stretch;
+    align-items: center;
+    justify-content: center;
+}
+
+.col {
+    display: flex;
+    width: 85%;
+    height: 90%;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.all_info {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.edit {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.edir span svg{
+    width:1rem;
+}
+.date {
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+    width: 17.3125rem;
+    height: 3.625rem;
+    flex-shrink: 0;
+    border-radius: 0.625rem;
+    border: 1px solid #BE0202;
+    background: #FFF;
+}

@@ -3,6 +3,7 @@
   flex-direction: row;
   height: 100%;
 }
+
 .addappoint .adding {
   height: 100%;
   min-width: calc(100% - 320px);
@@ -13,18 +14,21 @@
   overflow-y: scroll;
   scrollbar-width: none;
 }
+
 .addappoint .adding h1 {
   color: var(--Red);
-  font-family: 'Roboto',sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 32px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
 }
-.addappoint .adding .title{
+
+.addappoint .adding .title {
   display: flex;
   justify-content: space-between;
 }
+
 .addappoint .adding .title .s1 {
   color: #393939;
   opacity: 0.4993;
@@ -35,6 +39,7 @@
   line-height: normal;
   letter-spacing: -0.387px;
 }
+
 .addappoint .adding .title .s2 {
   color: var(--Red);
   font-family: "Raleway", sans-serif;
@@ -43,4 +48,94 @@
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.387px;
+}
+
+.field_group_doc {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  align-self: stretch;
+  flex-wrap: wrap;
+}
+
+.field_group_doc .text_field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  flex: 1 0 0;
+}
+
+.field_group_doc .text_field .label {
+  color: #1f1f1f;
+
+  /* Body/S */
+  font-family: "Roboto", sans-serif;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  /* 1.225rem */
+}
+
+.field_group_doc .text_field .field {
+  display: flex;
+  height: 3rem;
+  padding: 0.75rem 1rem;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.625rem;
+  border: 1px solid #be0202;
+}
+
+.custom-input {
+  display: flex;
+
+}
+
+.appoints {
+  margin-top: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.appoints .col {
+  display: flex;
+  /* width: 100%; */
+  /* gap: 4rem; */
+  flex-direction: column;
+  /* align-items: center; */
+  gap: 2rem;
+  justify-content: center;
+}
+
+.field_group_doc {
+  display: flex;
+  gap: 2rem;
+  /* gap: 1rem; */
+  align-self: stretch;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.custom-input .inp {
+  flex: 1 0 0;
+  border: none;
+  font-family: Roboto;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  outline: none;
+}
+
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__month-text--keyboard-selected,
+.react-datepicker__quarter-text--keyboard-selected,
+.react-datepicker__year-text--keyboard-selected {
+  border-radius: 0.3rem;
+  background-color: Var(--Red);
+  color: rgb(0, 0, 0);
 }

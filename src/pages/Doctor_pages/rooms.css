@@ -1,0 +1,85 @@
+.Room{
+    display: flex;
+}
+
+
+.room12r{
+    width: 43.5rem;
+height: 5.5625rem;
+flex-shrink: 0;
+margin: 1.5rem;
+border-radius: 1.25rem;
+border: 1px solid #BE0202;
+background: #FFF;
+}
+
+.room12r svg{
+    margin: 0.5rem 1rem;
+}
+
+.roomh2r{
+    color: #000;
+
+font-family: Roboto;
+margin: -4rem 2rem;
+font-size: 2rem;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+
+}
+
+.room2rr{
+    color: #000;
+font-family: Roboto;
+margin: 2rem 7rem ;
+font-size: 1.25rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.room3rr{
+    color: #1F1F1F;
+font-family: Roboto;
+margin: -3.5rem 18rem;
+font-size: 1.25rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.room4rr{
+    color: #1F1F1F;
+font-family: Roboto;
+font-size: 1.25rem;
+padding-top: 2rem;
+padding-left: 36rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.roomvideo2{
+    display: flex;
+width: 20.0625rem;
+height: 3rem;
+margin: 3.9rem 13rem;
+justify-content: center;
+align-items: center;
+flex-shrink: 0;
+border-radius: 0.625rem;
+background: linear-gradient(90deg, rgba(61, 156, 38, 0.68) 0%, rgba(61, 156, 38, 0.63) 100%);
+color: var(--Default-White, #FFF);
+font-family: Roboto;
+font-size: 1.5rem;
+font-style: normal;
+font-weight: 500;
+line-height: 100%; /* 1.5rem */
+letter-spacing: 0.03125rem;
+}
+
+.buttonrom1{
+    
+    margin: -70.5rem 37rem;
+}

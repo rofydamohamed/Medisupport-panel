@@ -26,11 +26,18 @@ import Makeappointment from "./pages/Doctor_pages/makeappointment";
 import Addappointment from "./pages/Doctor_pages/addappointment";
 import Profile from "./pages/Doctor_pages/profile"
 import Rooms from "./pages/Doctor_pages/rooms";
+import Video from "./pages/Doctor_pages/video";
+
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Login />,
+    errorElement: <h1>Sorry, No page to display....</h1>,
+  },
+  {
+    path: "/video",
+    element: <Video />,
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
   {
@@ -51,11 +58,7 @@ const router = createBrowserRouter([
     ),
     errorElement: <h1>Sorry, No page to display....</h1>,
   },
-  {
-    path: "/dashboard",
-    element: <Dashboard />,
-    errorElement: <h1>Sorry, No page to display....</h1>,
-  },
+ 
   {
     path: "/dashdoc",
     element: <Dashdoc />,

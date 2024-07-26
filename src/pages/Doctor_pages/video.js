@@ -1,19 +1,21 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './video.css';
-import { connect, createLocalVideoTrack } from '@twilio/video';
+import { connect, createLocalVideoTrack } from 'twilio-video';
 
 const Video = () => {
     const [room, setRoom] = useState(null);
     const [localTrack, setLocalTrack] = useState(null);
-    const localVideoRef = useRef();
-    const remoteVideoRef = useRef();
+    const localVideoRef = useRef(null);
+    const remoteVideoRef = useRef(null);
 
     useEffect(() => {
         const startVideo = async () => {
             const track = await createLocalVideoTrack();
-            localVideoRef.current.appendChild(track.attach());
-            setLocalTrack(track);
-        };
+            if (localVideoRef.current) {
+                localVideoRef.current.appendChild(track.attach());
+                setLocalTrack(track);
+            }
+        };  
 
         startVideo();
 
@@ -25,7 +27,7 @@ const Video = () => {
     }, [localTrack]);
 
     const handleConnect = async () => {
-        const response = await fetch('YOUR_SERVER_URL/token'); // احصل على توكين من خادمك
+        const response = await fetch('http://127.0.0.1:8000/api/auth/doctor/video-call/token'); // احصل على توكين من خادمك
         const data = await response.json();
         const room = await connect(data.token, { name: 'my-room' });
         setRoom(room);
@@ -34,12 +36,16 @@ const Video = () => {
             participant.tracks.forEach(publication => {
                 if (publication.isSubscribed) {
                     const track = publication.track;
-                    remoteVideoRef.current.appendChild(track.attach());
+                    if (remoteVideoRef.current) {
+                        remoteVideoRef.current.appendChild(track.attach());
+                    }
                 }
             });
 
             participant.on('trackSubscribed', track => {
-                remoteVideoRef.current.appendChild(track.attach());
+                if (remoteVideoRef.current) {
+                    remoteVideoRef.current.appendChild(track.attach());
+                }
             });
         });
     };
